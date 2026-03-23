@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -25,6 +22,13 @@ public class GameManager : MonoBehaviour
     {
         GenerateManager<GameSceneManager>();
         GenerateManager<AudioManager>();
+        
+        DebugTool.DebugAllOn();
+    }
+
+    private void Start()
+    {
+        DebugTool.Log("게임 시작", DebugType.Game, this);
     }
 
     private void GenerateManager<T>() where T : Component
@@ -35,5 +39,6 @@ public class GameManager : MonoBehaviour
         go.AddComponent<T>();
         DontDestroyOnLoad(go);
     }
+
 }
 
