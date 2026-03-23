@@ -7,11 +7,9 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "UnitDatabase", menuName = "Bismuth/Unit Database", order = 0)]
 public class UnitSO : ScriptableObject
 {
-    [Header("━━━━ 유닛 시트 데이터 ━━━━")]
-    [Tooltip("구글시트 Unit 시트 전체 데이터\nID순으로 정렬 권장 (10001~)")]
+    [Header("━━━━ 유닛 시트 데이터 ━━━━")] [Tooltip("구글시트 Unit 시트 전체 데이터\nID순으로 정렬 권장 (10001~)")] 
+    public static int MaxTier = 4;
     [SerializeField] private List<UnitData> units = new List<UnitData>();
-
-    public IReadOnlyList<UnitData> Units => units;
 
     // ID로 유닛 검색
     public UnitData GetUnitById(int id)

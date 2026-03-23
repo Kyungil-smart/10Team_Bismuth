@@ -29,7 +29,7 @@ public class SheetData
 
             if (uwr.result != UnityWebRequest.Result.Success)
             {
-                Debug.LogError($"<color=red>Sheet Load Failed: {uwr.error}</color>");
+                DebugTool.Warnning($"Sheet Load Failed: {uwr.error}", DebugType.Data);
                 yield break;
             }
 
@@ -38,7 +38,6 @@ public class SheetData
             string[] lines = sheetDataText.Split(new[] { '\n', '\r' }, System.StringSplitOptions.RemoveEmptyEntries);
 
             onSuccessCall?.Invoke(SplitSymbol, lines);
-            Debug.Log($"<color=green>Success Loaded Google Sheet Data ({lines.Length} rows)</color>");
         }
     }
 }

@@ -1,0 +1,709 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 444274542a986a04191c9ccc74f8ecbd, type: 3}
+  m_Name: Tier 3 Unit
+  m_EditorClassIdentifier: Assembly-CSharp::UnitSO
+  units:
+  - unitName: "\uC778\uAC04 \uC804\uC0AC"
+    id: 10001
+    tier: 1
+    attackPower: 18
+    attackSpeed: 0.6
+    criticalChance: 0
+    attackRange: 1
+    attackArea: 1
+    attackType: 0
+    synergy1: "\uC778\uAC04"
+    synergy2: "\uC804\uC0AC"
+    synergy3: 
+    visualConcept: 
+  - unitName: "\uC778\uAC04 \uAC70\uB108"
+    id: 10002
+    tier: 1
+    attackPower: 17
+    attackSpeed: 0.65
+    criticalChance: 0
+    attackRange: 5
+    attackArea: 1
+    attackType: 0
+    synergy1: "\uC778\uAC04"
+    synergy2: "\uAC70\uB108"
+    synergy3: 
+    visualConcept: 
+  - unitName: "\uC778\uAC04 \uB9C8\uBC95\uC0AC"
+    id: 10003
+    tier: 1
+    attackPower: 12
+    attackSpeed: 0.7
+    criticalChance: 0
+    attackRange: 2
+    attackArea: 1
+    attackType: 0
+    synergy1: "\uC778\uAC04"
+    synergy2: "\uB9C8\uBC95\uC0AC"
+    synergy3: 
+    visualConcept: 
+  - unitName: "\uC5D8\uD504 \uACA9\uD22C\uAC00"
+    id: 10004
+    tier: 1
+    attackPower: 14
+    attackSpeed: 1.4
+    criticalChance: 0.03
+    attackRange: 1
+    attackArea: 1
+    attackType: 0
+    synergy1: "\uC5D8\uD504"
+    synergy2: "\uACA9\uD22C\uAC00"
+    synergy3: 
+    visualConcept: 
+  - unitName: "\uC5D8\uD504 \uB9C8\uBC95\uC0AC"
+    id: 10005
+    tier: 1
+    attackPower: 11
+    attackSpeed: 0.8
+    criticalChance: 0
+    attackRange: 2
+    attackArea: 2
+    attackType: 1
+    synergy1: "\uC5D8\uD504"
+    synergy2: "\uB9C8\uBC95\uC0AC"
+    synergy3: 
+    visualConcept: 
+  - unitName: "\uC5D8\uD504 \uAD81\uC218"
+    id: 10006
+    tier: 1
+    attackPower: 9
+    attackSpeed: 1.2
+    criticalChance: 0
+    attackRange: 5
+    attackArea: 1
+    attackType: 0
+    synergy1: "\uC5D8\uD504"
+    synergy2: "\uAD81\uC218"
+    synergy3: 
+    visualConcept: 
+  - unitName: "\uC624\uD06C \uACA9\uD22C\uAC00"
+    id: 10007
+    tier: 1
+    attackPower: 16
+    attackSpeed: 1
+    criticalChance: 0.02
+    attackRange: 1
+    attackArea: 1
+    attackType: 0
+    synergy1: "\uC624\uD06C"
+    synergy2: "\uACA9\uD22C\uAC00"
+    synergy3: 
+    visualConcept: 
+  - unitName: "\uC624\uD06C \uC804\uC0AC"
+    id: 10008
+    tier: 1
+    attackPower: 20
+    attackSpeed: 0.5
+    criticalChance: 0
+    attackRange: 1
+    attackArea: 1
+    attackType: 1
+    synergy1: "\uC624\uD06C"
+    synergy2: "\uC804\uC0AC"
+    synergy3: 
+    visualConcept: 
+  - unitName: "\uC624\uD06C \uAC70\uB108"
+    id: 10009
+    tier: 1
+    attackPower: 17
+    attackSpeed: 0.55
+    criticalChance: 0
+    attackRange: 1
+    attackArea: 1
+    attackType: 0
+    synergy1: "\uC624\uD06C"
+    synergy2: "\uAC70\uB108"
+    synergy3: 
+    visualConcept: 
+  - unitName: "\uC218\uC778 \uACA9\uD22C\uAC00"
+    id: 10010
+    tier: 1
+    attackPower: 14
+    attackSpeed: 1.2
+    criticalChance: 0.03
+    attackRange: 1
+    attackArea: 1
+    attackType: 0
+    synergy1: "\uC218\uC778"
+    synergy2: "\uACA9\uD22C\uAC00"
+    synergy3: 
+    visualConcept: 
+  - unitName: "\uC218\uC778 \uAD81\uC218"
+    id: 10011
+    tier: 1
+    attackPower: 10
+    attackSpeed: 1.1
+    criticalChance: 0
+    attackRange: 4
+    attackArea: 1
+    attackType: 0
+    synergy1: "\uC218\uC778"
+    synergy2: "\uAD81\uC218"
+    synergy3: 
+    visualConcept: 
+  - unitName: "\uC218\uC778 \uAC70\uB108"
+    id: 10012
+    tier: 1
+    attackPower: 16
+    attackSpeed: 0.7
+    criticalChance: 0
+    attackRange: 4
+    attackArea: 1
+    attackType: 0
+    synergy1: "\uC218\uC778"
+    synergy2: "\uAC70\uB108"
+    synergy3: 
+    visualConcept: 
+  - unitName: "\uC815\uB839 \uB9C8\uBC95\uC0AC"
+    id: 10013
+    tier: 1
+    attackPower: 13
+    attackSpeed: 0.7
+    criticalChance: 0
+    attackRange: 3
+    attackArea: 2
+    attackType: 1
+    synergy1: "\uC815\uB839"
+    synergy2: "\uB9C8\uBC95\uC0AC"
+    synergy3: 
+    visualConcept: 
+  - unitName: "\uC815\uB839 \uC804\uC0AC"
+    id: 10014
+    tier: 1
+    attackPower: 17
+    attackSpeed: 0.6
+    criticalChance: 0
+    attackRange: 1
+    attackArea: 1
+    attackType: 0
+    synergy1: "\uC815\uB839"
+    synergy2: "\uC804\uC0AC"
+    synergy3: 
+    visualConcept: 
+  - unitName: "\uC815\uB839 \uAD81\uC218"
+    id: 10015
+    tier: 1
+    attackPower: 10
+    attackSpeed: 1
+    criticalChance: 0
+    attackRange: 5
+    attackArea: 1
+    attackType: 0
+    synergy1: "\uC815\uB839"
+    synergy2: "\uAD81\uC218"
+    synergy3: 
+    visualConcept: 
+  - unitName: "\uC911\uAC11\uC804\uC0AC"
+    id: 10016
+    tier: 2
+    attackPower: 39
+    attackSpeed: 0.7
+    criticalChance: 0
+    attackRange: 1
+    attackArea: 2
+    attackType: 0
+    synergy1: "\uC778\uAC04"
+    synergy2: "\uC804\uC0AC"
+    synergy3: 
+    visualConcept: 
+  - unitName: "\uD504\uB85C \uBCF5\uC11C"
+    id: 10017
+    tier: 2
+    attackPower: 27
+    attackSpeed: 1.4
+    criticalChance: 0.03
+    attackRange: 1
+    attackArea: 1
+    attackType: 0
+    synergy1: "\uC218\uC778"
+    synergy2: "\uACA9\uD22C\uAC00"
+    synergy3: 
+    visualConcept: 
+  - unitName: "\uC0AC\uB0E5\uAFBC"
+    id: 10018
+    tier: 2
+    attackPower: 24
+    attackSpeed: 1.5
+    criticalChance: 0
+    attackRange: 6
+    attackArea: 1
+    attackType: 0
+    synergy1: "\uC5D8\uD504"
+    synergy2: "\uAD81\uC218"
+    synergy3: 
+    visualConcept: 
+  - unitName: "\uCCA9\uBCF4\uC694\uC6D0"
+    id: 10019
+    tier: 2
+    attackPower: 32
+    attackSpeed: 0.8
+    criticalChance: 0
+    attackRange: 7
+    attackArea: 1
+    attackType: 0
+    synergy1: "\uC5D8\uD504"
+    synergy2: "\uAC70\uB108"
+    synergy3: 
+    visualConcept: 
+  - unitName: "\uBC29\uB791\uAC80\uC0AC"
+    id: 10020
+    tier: 2
+    attackPower: 38
+    attackSpeed: 0.9
+    criticalChance: 0
+    attackRange: 1
+    attackArea: 1
+    attackType: 1
+    synergy1: "\uC218\uC778"
+    synergy2: "\uC804\uC0AC"
+    synergy3: 
+    visualConcept: 
+  - unitName: "\uC8FC\uC220\uC0AC"
+    id: 10021
+    tier: 2
+    attackPower: 30
+    attackSpeed: 0.7
+    criticalChance: 0
+    attackRange: 3
+    attackArea: 2
+    attackType: 1
+    synergy1: "\uC624\uD06C"
+    synergy2: "\uB9C8\uBC95\uC0AC"
+    synergy3: 
+    visualConcept: 
+  - unitName: "\uD30C\uC774\uD130"
+    id: 10022
+    tier: 2
+    attackPower: 26
+    attackSpeed: 1.3
+    criticalChance: 0.04
+    attackRange: 1
+    attackArea: 1
+    attackType: 0
+    synergy1: "\uC815\uB839"
+    synergy2: "\uACA9\uD22C\uAC00"
+    synergy3: 
+    visualConcept: 
+  - unitName: "\uAD11\uC804\uC0AC"
+    id: 10023
+    tier: 2
+    attackPower: 42
+    attackSpeed: 0.6
+    criticalChance: 0
+    attackRange: 1
+    attackArea: 1
+    attackType: 1
+    synergy1: "\uC624\uD06C"
+    synergy2: "\uC804\uC0AC"
+    synergy3: 
+    visualConcept: 
+  - unitName: "\uB9C8\uB3C4\uC5F0\uAD6C\uAC00"
+    id: 10024
+    tier: 2
+    attackPower: 30
+    attackSpeed: 0.8
+    criticalChance: 0
+    attackRange: 4
+    attackArea: 2
+    attackType: 1
+    synergy1: "\uC778\uAC04"
+    synergy2: "\uB9C8\uBC95\uC0AC"
+    synergy3: 
+    visualConcept: 
+  - unitName: "\uD22C\uCC99\uAC00"
+    id: 10025
+    tier: 2
+    attackPower: 28
+    attackSpeed: 1.2
+    criticalChance: 0
+    attackRange: 4
+    attackArea: 1
+    attackType: 0
+    synergy1: "\uC624\uD06C"
+    synergy2: "\uAD81\uC218"
+    synergy3: 
+    visualConcept: 
+  - unitName: "\uCC3D\uC220\uC0AC"
+    id: 10026
+    tier: 2
+    attackPower: 37
+    attackSpeed: 1
+    criticalChance: 0
+    attackRange: 1
+    attackArea: 2
+    attackType: 1
+    synergy1: "\uC5D8\uD504"
+    synergy2: "\uC804\uC0AC"
+    synergy3: 
+    visualConcept: 
+  - unitName: "\uC2A4\uB098\uC774\uD37C"
+    id: 10027
+    tier: 2
+    attackPower: 31
+    attackSpeed: 0.7
+    criticalChance: 0
+    attackRange: 7
+    attackArea: 1
+    attackType: 0
+    synergy1: "\uC815\uB839"
+    synergy2: "\uAC70\uB108"
+    synergy3: 
+    visualConcept: 
+  - unitName: "\uC591\uAD81\uC120\uC218"
+    id: 10028
+    tier: 2
+    attackPower: 25
+    attackSpeed: 1.3
+    criticalChance: 0
+    attackRange: 5
+    attackArea: 1
+    attackType: 0
+    synergy1: "\uC778\uAC04"
+    synergy2: "\uAD81\uC218"
+    synergy3: 
+    visualConcept: 
+  - unitName: "\uD654\uC5FC\uBC95\uC0AC"
+    id: 10029
+    tier: 2
+    attackPower: 28
+    attackSpeed: 1
+    criticalChance: 0
+    attackRange: 3
+    attackArea: 2
+    attackType: 1
+    synergy1: "\uC815\uB839"
+    synergy2: "\uB9C8\uBC95\uC0AC"
+    synergy3: 
+    visualConcept: 
+  - unitName: "\uC218\uD589\uC790"
+    id: 10030
+    tier: 2
+    attackPower: 29
+    attackSpeed: 1.4
+    criticalChance: 0.03
+    attackRange: 1
+    attackArea: 1
+    attackType: 0
+    synergy1: "\uC624\uD06C"
+    synergy2: "\uACA9\uD22C\uAC00"
+    synergy3: 
+    visualConcept: 
+  - unitName: "\uC18C\uD658\uC220\uC0AC"
+    id: 10031
+    tier: 2
+    attackPower: 31
+    attackSpeed: 0.9
+    criticalChance: 0
+    attackRange: 4
+    attackArea: 1
+    attackType: 0
+    synergy1: "\uC218\uC778"
+    synergy2: "\uB9C8\uBC95\uC0AC"
+    synergy3: 
+    visualConcept: 
+  - unitName: "\uB9C8\uAC00\uB9B0"
+    id: 10032
+    tier: 3
+    attackPower: 72
+    attackSpeed: 1.8
+    criticalChance: 0
+    attackRange: 6
+    attackArea: 2
+    attackType: 1
+    synergy1: "\uC218\uC778"
+    synergy2: "\uAD81\uC218"
+    synergy3: 
+    visualConcept: "\uC0C8\uCD1D+\uAC15\uC544\uC9C0 \uC218\uC778"
+  - unitName: "\uC774\uD504\uB9AC\uD2B8"
+    id: 10033
+    tier: 3
+    attackPower: 81
+    attackSpeed: 1
+    criticalChance: 0
+    attackRange: 2
+    attackArea: 2
+    attackType: 1
+    synergy1: "\uC815\uB839"
+    synergy2: "\uC804\uC0AC"
+    synergy3: "\uB9C8\uBC95\uC0AC"
+    visualConcept: "\uBD88\uC18D\uC131+\uCC3D(\uD639\uC740 \uB79C\uC2A4)(\uBD89\uC740
+      \uC0C9 \uACC4\uC5F4)"
+  - unitName: "\uD06C\uB77D\uC0E4"
+    id: 10034
+    tier: 3
+    attackPower: 71
+    attackSpeed: 1.4
+    criticalChance: 0
+    attackRange: 8
+    attackArea: 1
+    attackType: 0
+    synergy1: "\uC624\uD06C"
+    synergy2: "\uAC70\uB108"
+    synergy3: "\uAD81\uC218"
+    visualConcept: "\uC6D0\uC2DC\uC801\uC778 \uBCF5\uC7A5+\uC11D\uAD81 \uC0AC\uC6A9"
+  - unitName: MS.K
+    id: 10035
+    tier: 3
+    attackPower: 70
+    attackSpeed: 1.6
+    criticalChance: 0.1
+    attackRange: 3
+    attackArea: 1
+    attackType: 0
+    synergy1: "\uC778\uAC04"
+    synergy2: "\uACA9\uD22C\uAC00"
+    synergy3: "\uAC70\uB108"
+    visualConcept: "\uAD8C\uCD1D+\uB2E8\uAC80(007, \uBBF8\uC158 \uC784\uD30C\uC11C\uBE14
+      \uAC19\uC740 \uC218\uD2B8+\uD2B9\uC218 \uC694\uC6D0 \uCEE8\uC149)"
+  - unitName: "\uC138\uB808\uC2A4"
+    id: 10036
+    tier: 3
+    attackPower: 77
+    attackSpeed: 1.3
+    criticalChance: 0
+    attackRange: 4
+    attackArea: 4
+    attackType: 1
+    synergy1: "\uC5D8\uD504"
+    synergy2: "\uB9C8\uBC95\uC0AC"
+    synergy3: 
+    visualConcept: "\uAE08\uBC1C+\uCD08\uB85D\uC0C9 \uB9C8\uBC95\uC0AC \uB85C\uBE0C+\uB098\uBB34
+      \uC2A4\uD0DC\uD504"
+  - unitName: "\uB9C8\uCE74"
+    id: 10037
+    tier: 3
+    attackPower: 90
+    attackSpeed: 1.1
+    criticalChance: 0
+    attackRange: 1
+    attackArea: 1
+    attackType: 1
+    synergy1: "\uC624\uD06C"
+    synergy2: "\uC804\uC0AC"
+    synergy3: 
+    visualConcept: "\uB300\uD615 \uB9DD\uCE58(\uD639\uC740 \uB3C4\uB07C)+ \uD604\uB300\uC2DD
+      \uD6C4\uB4DC \uD06C\uB86D\uD0D1+\uB808\uAE45\uC2A4"
+  - unitName: "\uC720\uC131"
+    id: 10038
+    tier: 3
+    attackPower: 82
+    attackSpeed: 1.5
+    criticalChance: 0
+    attackRange: 7
+    attackArea: 1
+    attackType: 0
+    synergy1: "\uC218\uC778"
+    synergy2: "\uAC70\uB108"
+    synergy3: 
+    visualConcept: "\uD751\uBC1C \uC5EC\uC6B0\uADC0 + \uB77C\uC774\uD50C + \uAD70\uBCF5"
+  - unitName: "\uBBF8\uCF54"
+    id: 10039
+    tier: 3
+    attackPower: 68
+    attackSpeed: 1.9
+    criticalChance: 0.12
+    attackRange: 3
+    attackArea: 1
+    attackType: 0
+    synergy1: "\uC778\uAC04"
+    synergy2: "\uAD81\uC218"
+    synergy3: "\uACA9\uD22C\uAC00"
+    visualConcept: "\uBC31\uBC1C, \uC218\uB9AC\uAC80, \uB2CC\uC790\uBCF5"
+  - unitName: "\uC5D8\uB808\uB2C8\uC544"
+    id: 10040
+    tier: 3
+    attackPower: 81
+    attackSpeed: 1.4
+    criticalChance: 0.1
+    attackRange: 1
+    attackArea: 5
+    attackType: 1
+    synergy1: "\uC5D8\uD504"
+    synergy2: "\uC804\uC0AC"
+    synergy3: "\uACA9\uD22C\uAC00"
+    visualConcept: "\uD551\uD06C\uBA38\uB9AC + \uD30C\uB780 \uB208 + \uB871\uC18C\uB4DC"
+  - unitName: "\uD504\uB9AC\uC81C"
+    id: 10041
+    tier: 3
+    attackPower: 83
+    attackSpeed: 1.2
+    criticalChance: 0
+    attackRange: 6
+    attackArea: 1
+    attackType: 1
+    synergy1: "\uC815\uB839"
+    synergy2: "\uAC70\uB108"
+    synergy3: 
+    visualConcept: "\uC5BC\uC74C\uC18D\uC131(\uC5F0\uD55C \uD30C\uB791 \uD53C\uBD80)
+      + \uC18C\uCD1D( kar98 \uD639\uC740 m1 \uAC1C\uB7F0\uB4DC \uBCA0\uC774\uC2A4)"
+  - unitName: "\uC2DC\uD2B8\uB9B0"
+    id: 10042
+    tier: 3
+    attackPower: 78
+    attackSpeed: 1.5
+    criticalChance: 0
+    attackRange: 4
+    attackArea: 4
+    attackType: 1
+    synergy1: "\uC815\uB839"
+    synergy2: "\uB9C8\uBC95\uC0AC"
+    synergy3: 
+    visualConcept: "\uC218\uC815 \uAD6C\uC2AC + \uC804\uAE30 \uC18D\uC131 (\uB178\uB780
+      \uD53C\uBD80) + \uC8FC\uD669\uC0C9 \uC6D0\uD53C\uC2A4"
+  - unitName: "\uB124\uB9AC\uC2A4"
+    id: 10043
+    tier: 3
+    attackPower: 69
+    attackSpeed: 1.7
+    criticalChance: 0
+    attackRange: 5
+    attackArea: 2
+    attackType: 1
+    synergy1: "\uC5D8\uD504"
+    synergy2: "\uAD81\uC218"
+    synergy3: "\uB9C8\uBC95\uC0AC"
+    visualConcept: "\uD751\uBC1C + \uAC70\uB300 \uC7A5\uAD81 + \uB9DD\uD1A0 + \uAC70\uB300
+      \uD654\uC0B4"
+  - unitName: "\uCF54"
+    id: 10044
+    tier: 3
+    attackPower: 75
+    attackSpeed: 1.3
+    criticalChance: 0.09
+    attackRange: 2
+    attackArea: 3
+    attackType: 1
+    synergy1: "\uC624\uD06C"
+    synergy2: "\uACA9\uD22C\uAC00"
+    synergy3: "\uB9C8\uBC95\uC0AC"
+    visualConcept: "\uAC08\uC0C9 \uD3EC\uB2C8\uD14C\uC77C + \uBB34\uD76C\uBCF5 +
+      \uCC28\uD06C\uB78C"
+  - unitName: "\uC2E0\uC758 \uBC18\uB824 \uC6C5\uD61C"
+    id: 10045
+    tier: 4
+    attackPower: 170
+    attackSpeed: 2.2
+    criticalChance: 0
+    attackRange: 6
+    attackArea: 6
+    attackType: 1
+    synergy1: "\uC218\uC778"
+    synergy2: "\uB9C8\uBC95\uC0AC"
+    synergy3: "\uAD81\uC218"
+    visualConcept: "\U0001F44D"
+  - unitName: "\uD37C\uD50C \uD5E4\uC774\uC988 \uD5E4\uCE74\uD14C"
+    id: 10046
+    tier: 4
+    attackPower: 192
+    attackSpeed: 1.7
+    criticalChance: 0
+    attackRange: 9
+    attackArea: 1
+    attackType: 1
+    synergy1: "\uC778\uAC04"
+    synergy2: "\uAC70\uB108"
+    synergy3: "\uAC70\uB108"
+    visualConcept: "\uC790\uC8FC\uC0C9 \uBA38\uB9AC + \uBBFC\uC18C\uB9E4 \uD06C\uB86D\uD0D1
+      + \uD56B\uD32C\uCE20 + \uCC22\uC5B4\uC9C4 \uB9DD\uD1A0+ \uB300\uBB3C \uC800\uACA9\uCD1D"
+  - unitName: "\uCCAD\uB8B0\uC758 \uC2DC\uC704 \uC544\uC2A4\uB9B0"
+    id: 10047
+    tier: 4
+    attackPower: 171
+    attackSpeed: 2.5
+    criticalChance: 0
+    attackRange: 8
+    attackArea: 1
+    attackType: 1
+    synergy1: "\uC5D8\uD504"
+    synergy2: "\uAD81\uC218"
+    synergy3: "\uC804\uC0AC"
+    visualConcept: "\uAE08\uBC1C+\uD30C\uB791 \uBE0C\uB9BF\uC9C0 \uD5E4\uC5B4+ \uD30C\uB780
+      \uB208 + \uAC70\uB300 \uC7A5\uAD81 + \uD558\uC580 \uB9DD\uD1A0 +  \uD30C\uB780
+      \uBC88\uAC1C \uC774\uD399\uD2B8"
+  - unitName: "\uD54F\uBE5B \uAC08\uAE30 \uBAA8\uAC00\uB098"
+    id: 10048
+    tier: 4
+    attackPower: 200
+    attackSpeed: 1.4
+    criticalChance: 0
+    attackRange: 1
+    attackArea: 4
+    attackType: 1
+    synergy1: "\uC624\uD06C"
+    synergy2: "\uC804\uC0AC"
+    synergy3: "\uC804\uC0AC"
+    visualConcept: "\uD2B9\uB300\uAC80 + \uC6A9 \uBA38\uB9AC \uBAA8\uC601\uC758 \uBF08
+      \uD22C\uAD6C + \uBF08 \uAC11\uC637 + \uBD89\uC740 \uD138 (\uD639\uC740 \uAE43\uD138)
+      \uC7A5\uC2DD"
+  - unitName: "\uCCA0\uBCBD \uAE30\uC0AC \uB77C\uC2DC\uC548"
+    id: 10049
+    tier: 4
+    attackPower: 183
+    attackSpeed: 2.3
+    criticalChance: 0.14
+    attackRange: 1
+    attackArea: 2
+    attackType: 1
+    synergy1: "\uC218\uC778"
+    synergy2: "\uC804\uC0AC"
+    synergy3: "\uACA9\uD22C\uAC00"
+    visualConcept: "\uBE0C\uB85C\uB4DC \uC18C\uB4DC + \uBC84\uD074\uB7EC                                                       
+      \u2192"
+  - unitName: "\uC815\uB839\uC5EC\uC655 \uD2F0\uD0C0\uB2C8\uC544"
+    id: 10050
+    tier: 4
+    attackPower: 178
+    attackSpeed: 1.8
+    criticalChance: 0
+    attackRange: 4
+    attackArea: 7
+    attackType: 1
+    synergy1: "\uC815\uB839"
+    synergy2: "\uB9C8\uBC95\uC0AC"
+    synergy3: "\uB9C8\uBC95\uC0AC"
+    visualConcept: "\uBC31\uBC1C+\uD558\uC580\uC0C9\u2192\uC5F0\uB179\uC0C9 \uADF8\uB77C\uB370\uC774\uC158
+      \uB4DC\uB808\uC2A4 + \uC694\uC815 \uB0A0\uAC1C"
+  - unitName: "\uD669\uC57C\uC758 \uC740\uD0C4 \uB9AC\uBE44\uC544"
+    id: 10051
+    tier: 4
+    attackPower: 191
+    attackSpeed: 2
+    criticalChance: 0
+    attackRange: 7
+    attackArea: 1
+    attackType: 0
+    synergy1: "\uC5D8\uD504"
+    synergy2: "\uAC70\uB108"
+    synergy3: "\uAD81\uC218"
+    visualConcept: "\uB9AC\uBCFC\uBC84 2\uC790\uB8E8 \uC0AC\uC6A9 + \uCE74\uC6B0\uAC78
+      \uBCF5\uC7A5 + \uAE08\uBC1C \uB85C\uC6B0 \uD2B8\uC708\uD14C\uC77C"
+  - unitName: 
+    id: 10052
+    tier: 4
+    attackPower: 165
+    attackSpeed: 2.5
+    criticalChance: 0.2
+    attackRange: 8
+    attackArea: 1
+    attackType: 0
+    synergy1: "\uC815\uB839"
+    synergy2: "\uAD81\uC218"
+    synergy3: "\uACA9\uD22C\uAC00"
+    visualConcept: "\uC5B4\uB450\uC6B4 \uBCF4\uB77C\uC0C9 \uD6C4\uB4DC \uB85C\uBE0C
+      + \uB2E8\uAC80 + \uC5F0\uBCF4\uB77C\uC0C9 \uD53C\uBD80 + \uAD70\uCCAD\uC0C9
+      \uC7A5\uBC1C"
