@@ -6,35 +6,39 @@ using UnityEngine;
 [System.Serializable]
 public class UnitData
 {
-    [Header("━━━━ 기본 정보 ━━━━")] [Tooltip("유닛 고유 ID \n예: 10001 = 인간 전사")] [SerializeField]
+    [Header("━━━━ 기본 정보 ━━━━")] 
+    
+    [Tooltip("유닛 이름\n예: 인간 전사, 광전사, 웅혜")] [SerializeField]
+    private string unitName;
+    
+    [Tooltip("유닛 고유 ID \n예: 10001 = 인간 전사")] [SerializeField]
     private int id;
 
     [Tooltip("유닛 등급 단계 (1~4)\n1: 1성, 2: 2성, 3: 3성, 4: 4성(레어)")] [Range(1, 4)] [SerializeField]
     private int tier;
 
-    [Tooltip("유닛 이름\n예: 인간 전사, 광전사, 웅혜")] [SerializeField]
-    private string unitName;
-
-    [Space(8)] [Header("━━━━ 전투 스탯 ━━━━")] [Tooltip("기본 공격력")] [Min(0)] [SerializeField]
-    private int attackPower;
+    [Space(8)] [Header("━━━━ 전투 스탯 ━━━━")] 
+    
+    [Tooltip("기본 공격력")] [Min(0)] [SerializeField]
+    private float attackPower;
 
     [Tooltip("공격 속도 - 초당 공격 횟수\n예: 0.6 = 초당 0.6회, 1.4 = 초당 1.4회")] [Min(0.01f)] [SerializeField]
     private float attackSpeed;
 
     [Tooltip("치명타 확률 (0~1)\n0.1 = 10%, 0.14 = 14%")] [Range(0f, 1f)] [SerializeField]
-    private float criticalRate;
+    private float criticalChance;
 
-    [Tooltip("공격 사거리 (타일 수)\n1 = 근접, 5 ~ 7 = 원거리")] [Min(1)] [SerializeField]
-    private int range;
+    [Tooltip("공격 사거리 (타일 수)")] [Min(1)] [SerializeField]
+    private float attackRange;
 
     [Space(8)]
     [Header("━━━━ 공격 패턴 ━━━━")]
     [Tooltip("공격 범위 형식 \n예: 1(단일), 1*3(가로), 4*1(세로), 3*3(정사각형)\n'너비 * 높이' 형식")]
     [SerializeField]
-    private string attackRange;
+    private float attackArea;
 
-    [Tooltip("공격 대상 타입\n 단일 = 1타겟, 광역 = 다수, 정령 = 특수")] [SerializeField]
-    private AttackTargetType attackTarget;
+    [Tooltip("공격 대상 타입\n 타겟팅 = 1 ~ 3, 광역 = 대상과 대상 주변 모두")] [SerializeField]
+    private AttackType attackType;
 
     [Space(8)]
     [Header("━━━━ 시너지 (조합) ━━━━")]
@@ -59,12 +63,12 @@ public class UnitData
     public int Id => id;
     public int Tier => tier;
     public string UnitName => unitName;
-    public int AttackPower => attackPower;
+    public float AttackPower => attackPower;
     public float AttackSpeed => attackSpeed;
-    public float CriticalRate => criticalRate;
-    public int Range => range;
-    public string AttackRange => attackRange;
-    public AttackTargetType AttackTarget => attackTarget;
+    public float CriticalChance => criticalChance;
+    public float Range => attackRange;
+    public float AttackArea => attackArea;
+    public AttackType Attack => attackType;
     public string Synergy1 => synergy1;
     public string Synergy2 => synergy2;
     public string Synergy3 => synergy3;
@@ -73,25 +77,23 @@ public class UnitData
 
     // 공격 대상 타입 (단일/광역/정령)
 
-    public enum AttackTargetType
+    public enum AttackType
     {
-        Single, // 단일
+        Targeting, // 단일
         AOE, // 광역
-        Spirit // 정령
     }
 
 
     // 구글시트 문자열을 AttackTargetType으로 변환
-    public static AttackTargetType ParseAttackTarget(string value)
+    public static AttackType ParseAttackTarget(string value)
     {
         return value?.Trim() switch
         {
-            "단일" => AttackTargetType.Single,
-            "광역" => AttackTargetType.AOE,
-            "정령" => AttackTargetType.Spirit,
-            "2" => AttackTargetType.AOE,
-            "3" => AttackTargetType.Spirit,
-            _ => AttackTargetType.Single
+            "단일" => AttackType.Targeting,
+            "광역" => AttackType.AOE,
+            "2" => AttackType.AOE,
+            "3" => AttackType.AOE,
+            _ => AttackType.Targeting
         };
     }
 
@@ -114,12 +116,12 @@ public class UnitData
         int.TryParse(SafeGet(line, 0), out id);
         int.TryParse(SafeGet(line, 1), out tier);
         unitName = SafeGet(line, 2);
-        int.TryParse(SafeGet(line, 3), out attackPower);
+        float.TryParse(SafeGet(line, 3), out attackPower);
         attackSpeed = ParseAttackSpeed(SafeGet(line, 4));
-        float.TryParse(SafeGet(line, 5).Replace(",", "."), System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out criticalRate);
-        int.TryParse(SafeGet(line, 6), out range);
-        attackRange = SafeGet(line, 7);
-        attackTarget = ParseAttackTarget(SafeGet(line, 8));
+        float.TryParse(SafeGet(line, 5).Replace(",", "."), System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out criticalChance);
+        float.TryParse(SafeGet(line, 6), out attackRange);
+        float.TryParse(SafeGet(line, 7), out attackArea);
+        attackType = ParseAttackTarget(SafeGet(line, 8));
         synergy1 = SafeGet(line, 9);
         synergy2 = SafeGet(line, 10);
         synergy3 = SafeGet(line, 11);
