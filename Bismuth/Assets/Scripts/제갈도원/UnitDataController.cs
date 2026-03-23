@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class DataManager : MonoBehaviour
+public class UnitDataController : MonoBehaviour
 {
     [Header("━━━━ 시트 설정 ━━━━")]
     [Tooltip("구글시트 Unit 시트 URL\n공유 → 링크로 가져오기")]
@@ -9,16 +9,24 @@ public class DataManager : MonoBehaviour
 
     [Header("━━━━ 유닛 DB ━━━━")]
     [Tooltip("시트 데이터가 채워질 UnitSO 에셋\nCreate > Bismuth > Unit Database 로 생성 후 할당")]
-    public int AllUnitCount;
-    public int Tier1UnitCount;
-    public int Tier2UnitCount;
-    public int Tier3UnitCount;
-    public int Tier4UnitCount;
+    
+    public static int MaxTier = 4;
+    public static int AllUnitCount;
+    public static int Tier1UnitCount;
+    public static int Tier2UnitCount;
+    public static int Tier3UnitCount;
+    public static int Tier4UnitCount;
+    
     [SerializeField] private UnitSO[] unitDatabase = new UnitSO[4];
+    public UnitSO[] UnitDatabase => unitDatabase;
+    
+    public bool DataLog = false;
 
     [SerializeField] private bool _log;
     private void Start()
     {
+        DebugTool.DebugSelect(DebugType.Data, _log);
+        
         if (unitSheet == null || unitDatabase == null)
         {
             DebugTool.Warnning("unitSheet 또는 unitDatabase가 할당되지 않았습니다.", DebugType.Data, this);
@@ -27,7 +35,6 @@ public class DataManager : MonoBehaviour
         
         DebugTool.Warnning("[UnitSheet] 와  [UnitDatabase]를 성공적으로 불러왔습니다.", DebugType.Data, this);
         
-        DebugTool.DebugSelect(DebugType.Data, _log);
         StartCoroutine(unitSheet.Load(SetUnitDatas));
     }
 
@@ -40,6 +47,7 @@ public class DataManager : MonoBehaviour
 
         foreach(UnitSO unit in unitDatabase)
             unit.ClearUnits();
+        
         // 0행: 헤더, 1행부터 데이터
         for (int i = 1; i < lines.Length; i++)
         {

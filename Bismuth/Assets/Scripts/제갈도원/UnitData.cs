@@ -38,7 +38,7 @@ public class UnitData
     private float attackArea;
 
     [Tooltip("공격 대상 타입\n 타겟팅 = 1 ~ 3, 광역 = 대상과 대상 주변 모두")] [SerializeField]
-    private AttackType attackType;
+    private AttackTypes attackType;
 
     [Space(8)]
     [Header("━━━━ 시너지 (조합) ━━━━")]
@@ -58,7 +58,6 @@ public class UnitData
     [SerializeField]
     private string visualConcept;
 
-
     // 프로퍼티 (외부 접근용)
     public int Id => id;
     public int Tier => tier;
@@ -68,7 +67,7 @@ public class UnitData
     public float CriticalChance => criticalChance;
     public float Range => attackRange;
     public float AttackArea => attackArea;
-    public AttackType Attack => attackType;
+    public AttackTypes AttackType => attackType;
     public string Synergy1 => synergy1;
     public string Synergy2 => synergy2;
     public string Synergy3 => synergy3;
@@ -77,7 +76,7 @@ public class UnitData
 
     // 공격 대상 타입 (단일/광역/정령)
 
-    public enum AttackType
+    public enum AttackTypes
     {
         Targeting, // 단일
         AOE, // 광역
@@ -85,15 +84,15 @@ public class UnitData
 
 
     // 구글시트 문자열을 AttackTargetType으로 변환
-    public static AttackType ParseAttackTarget(string value)
+    public static AttackTypes ParseAttackTarget(string value)
     {
         return value?.Trim() switch
         {
-            "단일" => AttackType.Targeting,
-            "광역" => AttackType.AOE,
-            "2" => AttackType.AOE,
-            "3" => AttackType.AOE,
-            _ => AttackType.Targeting
+            "단일" => AttackTypes.Targeting,
+            "광역" => AttackTypes.AOE,
+            "2" => AttackTypes.AOE,
+            "3" => AttackTypes.AOE,
+            _ => AttackTypes.Targeting
         };
     }
 
