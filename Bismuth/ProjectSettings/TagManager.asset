@@ -41,11 +41,11 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Background
-    uniqueID: 1900395381
+  - name: BackGround Map
+    uniqueID: 3061401535
     locked: 0
   - name: Summon Tile
-    uniqueID: 1546735411
+    uniqueID: 1497849989
     locked: 0
   m_RenderingLayers:
   - Default
