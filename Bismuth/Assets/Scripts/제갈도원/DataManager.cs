@@ -24,6 +24,9 @@ public class DataManager : MonoBehaviour
             DebugTool.Warnning("unitSheet 또는 unitDatabase가 할당되지 않았습니다.", DebugType.Data, this);
             return;
         }
+        
+        DebugTool.Warnning("[UnitSheet] 와  [UnitDatabase]를 성공적으로 불러왔습니다.", DebugType.Data, this);
+        
         DebugTool.DebugSelect(DebugType.Data, _log);
         StartCoroutine(unitSheet.Load(SetUnitDatas));
     }

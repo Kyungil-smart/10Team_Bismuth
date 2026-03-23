@@ -38,7 +38,6 @@ public class SheetData
             string[] lines = sheetDataText.Split(new[] { '\n', '\r' }, System.StringSplitOptions.RemoveEmptyEntries);
 
             onSuccessCall?.Invoke(SplitSymbol, lines);
-            DebugTool.Log($"[{lines.Length} 개의 행을 성공적으로 불러왔습니다.]", DebugType.Data);
         }
     }
 }
