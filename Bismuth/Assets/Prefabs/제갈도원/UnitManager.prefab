@@ -45,6 +45,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DataManager
   unitSheet:
-    <Url>k__BackingField: https://docs.google.com/spreadsheets/d/1F8N8D9BqJ3phRCgWw5N1lCx_uYcSqAaO-PgpO3ll7vY/edit?gid=1953530827#gid=1953530827
+    <Url>k__BackingField: https://docs.google.com/spreadsheets/d/1F8N8D9BqJ3phRCgWw5N1lCx_uYcSqAaO-PgpO3ll7vY/edit?gid=1579084421#gid=1579084421
     <Type>k__BackingField: 1
-  unitDatabase: {fileID: 11400000, guid: 42c65043e3ed84a4f9d15502cdb0fc1e, type: 2}
+  AllUnitCount: 0
+  Tier1UnitCount: 0
+  Tier2UnitCount: 0
+  Tier3UnitCount: 0
+  Tier4UnitCount: 0
+  unitDatabase:
+  - {fileID: 11400000, guid: 42c65043e3ed84a4f9d15502cdb0fc1e, type: 2}
+  - {fileID: 11400000, guid: 6f6a3629b26de474c9fbdf776215566f, type: 2}
+  - {fileID: 11400000, guid: cd707799f7dc4e34cb90d06e1f138d58, type: 2}
+  - {fileID: 11400000, guid: 8085adba1f3e175448a3a2a771effdcf, type: 2}
+  DataLoaded: 0
+  _log: 1
