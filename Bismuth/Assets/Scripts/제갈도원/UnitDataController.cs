@@ -9,6 +9,7 @@ public class UnitDataController : MonoBehaviour
 
     [Header("━━━━ 유닛 DB ━━━━")]
     [Tooltip("시트 데이터가 채워질 UnitSO 에셋\nCreate > Bismuth > Unit Database 로 생성 후 할당")]
+    [SerializeField] private UnitSO[] unitDatabase = new UnitSO[4];
     
     public static int MaxTier = 4;
     public static int AllUnitCount;
@@ -17,10 +18,7 @@ public class UnitDataController : MonoBehaviour
     public static int Tier3UnitCount;
     public static int Tier4UnitCount;
     
-    [SerializeField] private UnitSO[] unitDatabase = new UnitSO[4];
     public UnitSO[] UnitDatabase => unitDatabase;
-    
-    public bool DataLog = false;
 
     [SerializeField] private bool _log;
     private void Start()

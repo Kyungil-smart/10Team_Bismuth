@@ -95,6 +95,7 @@ public class SummonManager : MonoBehaviour
         stat.Range = unitData.Range;
         stat.AttackArea = unitData.AttackArea;
         stat.attackTypes = unitData.AttackType;
+        stat.AttackTargetCount = unitData.AttackTargetCount;
         stat.Synerge1 = unitData.Synergy1;
         stat.Synerge2 = unitData.Synergy2;
         stat.Synerge3 = unitData.Synergy3;
