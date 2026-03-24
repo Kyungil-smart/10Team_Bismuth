@@ -2,7 +2,7 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!78 &1
 TagManager:
-  serializedVersion: 3
+  serializedVersion: 2
   tags: []
   layers:
   - Default
@@ -16,8 +16,8 @@ TagManager:
   - 
   - 
   - 
-  - Summonable Tile
-  - Unsummonable Tile
+  - 
+  - 
   - 
   - 
   - 
@@ -41,11 +41,3 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: BackGround Map
-    uniqueID: 3061401535
-    locked: 0
-  - name: Summon Tile
-    uniqueID: 1497849989
-    locked: 0
-  m_RenderingLayers:
-  - Default
