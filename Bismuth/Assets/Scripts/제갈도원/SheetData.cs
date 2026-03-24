@@ -6,7 +6,7 @@ using UnityEngine.Networking;
 [System.Serializable]
 public class SheetData
 {
-    [field: SerializeField] public string Url { get; private set; } = "https://docs.google.com/spreadsheets/d/1F8N8D9BqJ3phRCgWw5N1lCx_uYcSqAaO-PgpO3ll7vY/edit?gid=1953530827#gid=1953530827";
+    [field: SerializeField] public string Url { get; private set; }
     [field: SerializeField] public SheetType Type { get; private set; } = SheetType.TSV;
 
     public char SplitSymbol => Type == SheetType.CSV ? ',' : '\t';
