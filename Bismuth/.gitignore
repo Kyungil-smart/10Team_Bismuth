@@ -103,5 +103,9 @@ InitTestScene*.unity*
 # Ignore imported assets
 Assets/[Ii]mports/**
 
+# Personal Test File
 Assets/[Tt]est/**
 /.idea/
+
+# Personal Additional Support File
+AGENTS.md
