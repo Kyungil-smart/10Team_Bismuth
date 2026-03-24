@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8868012073444114695
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1468088331529082278}
+  - component: {fileID: 6649212302675941098}
+  m_Layer: 0
+  m_Name: UnitManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1468088331529082278
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8868012073444114695}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6649212302675941098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8868012073444114695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c000f90fd6021a14b850eb71378ff711, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DataManager
+  unitSheet:
+    <Url>k__BackingField: https://docs.google.com/spreadsheets/d/1F8N8D9BqJ3phRCgWw5N1lCx_uYcSqAaO-PgpO3ll7vY/edit?gid=1579084421#gid=1579084421
+    <Type>k__BackingField: 1
+  AllUnitCount: 0
+  Tier1UnitCount: 0
+  Tier2UnitCount: 0
+  Tier3UnitCount: 0
+  Tier4UnitCount: 0
+  unitDatabase:
+  - {fileID: 11400000, guid: 42c65043e3ed84a4f9d15502cdb0fc1e, type: 2}
+  - {fileID: 11400000, guid: 6f6a3629b26de474c9fbdf776215566f, type: 2}
+  - {fileID: 11400000, guid: cd707799f7dc4e34cb90d06e1f138d58, type: 2}
+  - {fileID: 11400000, guid: 8085adba1f3e175448a3a2a771effdcf, type: 2}
+  DataLoaded: 0
+  _log: 1
