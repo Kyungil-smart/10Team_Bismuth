@@ -1,0 +1,47 @@
+{
+    "version": 1,
+    "name": "TestAction",
+    "maps": [
+        {
+            "name": "Test",
+            "id": "9dd379f9-a929-49a7-9bbe-65738c378cdb",
+            "actions": [
+                {
+                    "name": "Random",
+                    "type": "Button",
+                    "id": "f3592cee-4fb0-4054-9e3c-a7a06848ec4e",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "5e298551-c4dc-4b59-937a-43bed7c07acc",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";PC",
+                    "action": "Random",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "PC",
+            "bindingGroup": "PC",
+            "devices": [
+                {
+                    "devicePath": "<Keyboard>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
+}
