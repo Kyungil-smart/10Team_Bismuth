@@ -5057,7 +5057,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Controll
+  m_text: Control
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -6767,7 +6767,7 @@ GameObject:
   - component: {fileID: 8546600123945716071}
   - component: {fileID: 4740798166363474017}
   m_Layer: 5
-  m_Name: ControllButton
+  m_Name: ControlButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11690,7 +11690,7 @@ GameObject:
   - component: {fileID: 3130665167499835217}
   - component: {fileID: 2084603223016249082}
   m_Layer: 5
-  m_Name: ControllPanel
+  m_Name: ControlPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13119,7 +13119,7 @@ MonoBehaviour:
   _WaveText: {fileID: 4359439171270034616}
   _fastButtonImage: {fileID: 1909127386492218128}
   _PauseButtonImage: {fileID: 1355993846531902701}
-  _settingsPopup: {fileID: 0}
+  _settingsPopup: {fileID: 8095677492117287897}
   _pausePanel: {fileID: 6848521932653653127}
   _fastSpeed: 2
   _darkness: 0.6
