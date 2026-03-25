@@ -5,11 +5,11 @@ public class TowerUnit : MonoBehaviour
     [SerializeField] private string towerId = "TempTower";
 
     public string TowerId => towerId;
-    public Vector3Int CurrentCell { get; private set; }
+    public PlacementSlot CurrentSlot { get; private set; }
 
-    public void SetPlacedCell(Vector3Int cellPos)
+    public void SetPlacedSlot(PlacementSlot slot)
     {
-        CurrentCell = cellPos;
+        CurrentSlot = slot;
 
         Vector3 pos = transform.position;
         pos.z = 0f;
