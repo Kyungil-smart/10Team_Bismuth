@@ -5088,6 +5088,7 @@ GameObject:
   - component: {fileID: 7049176722931963804}
   - component: {fileID: 4355120193973834199}
   - component: {fileID: 1150678450702701216}
+  - component: {fileID: 9217919348557542849}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -5183,6 +5184,19 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &9217919348557542849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3276245877223818212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4784469bcb965f64da33e0c84a85938c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PauseInputHandler
+  _pausePopup: {fileID: 6934473203848328767}
 --- !u!1 &3434638219858081172
 GameObject:
   m_ObjectHideFlags: 0
@@ -11048,6 +11062,7 @@ GameObject:
   - component: {fileID: 6155772928544357122}
   - component: {fileID: 4247403157668127606}
   - component: {fileID: 3958034208057588944}
+  - component: {fileID: 1240089873778284907}
   m_Layer: 5
   m_Name: GameViewPanel
   m_TagString: Untagged
@@ -11117,6 +11132,27 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1240089873778284907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8065607808896582098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc88449a9a4824842a405f8bf5d039b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameViewPanelUI
+  _WaveText: {fileID: 4359439171270034616}
+  _fastButtonImage: {fileID: 1909127386492218128}
+  _PauseButtonImage: {fileID: 1355993846531902701}
+  _settingsPopup: {fileID: 5298345837497092077}
+  _pausePanel: {fileID: 6848521932653653127}
+  _fastSpeed: 2
+  _darkness: 0.6
+  _pauseSprite: {fileID: 0}
+  _playSprite: {fileID: 0}
 --- !u!1 &8090338936445244262
 GameObject:
   m_ObjectHideFlags: 0
