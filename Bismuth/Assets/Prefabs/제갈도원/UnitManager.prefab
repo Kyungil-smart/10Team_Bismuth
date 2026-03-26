@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1468088331529082278}
   - component: {fileID: 6649212302675941098}
   - component: {fileID: 5492671902364682871}
+  - component: {fileID: 8637135535358880129}
   m_Layer: 0
   m_Name: UnitManager
   m_TagString: Untagged
@@ -53,7 +54,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6f6a3629b26de474c9fbdf776215566f, type: 2}
   - {fileID: 11400000, guid: cd707799f7dc4e34cb90d06e1f138d58, type: 2}
   - {fileID: 11400000, guid: 8085adba1f3e175448a3a2a771effdcf, type: 2}
-  _log: 0
+  _log: 1
 --- !u!114 &5492671902364682871
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -71,3 +72,21 @@ MonoBehaviour:
     <Type>k__BackingField: 1
   combineDatabase: {fileID: 11400000, guid: 0dfded2c1c40dd54498084b03b040f27, type: 2}
   _log: 1
+--- !u!114 &8637135535358880129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8868012073444114695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12b952884afe27e469170a424e8b0778, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SummonChanceDataController
+  summonChanceSo: {fileID: 11400000, guid: 78cd8cc80ec1d984e9375d6e88f08fce, type: 2}
+  _summonChanceSheet:
+    <Url>k__BackingField: https://docs.google.com/spreadsheets/d/1VOCm6Ea1lZwR6bHObUN7oggKR4U9nOfGWR_bl1s3nK4/edit?gid=883043207#gid=883043207
+    <Type>k__BackingField: 1
+  _rows: []
+  log: 1

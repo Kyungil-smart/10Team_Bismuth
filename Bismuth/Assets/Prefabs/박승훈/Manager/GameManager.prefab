@@ -10,6 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 8821340008124069095}
   - component: {fileID: 5232785933426238209}
+  - component: {fileID: 8423151259897990698}
+  - component: {fileID: 8140035803927745397}
+  - component: {fileID: 651773196946485032}
+  - component: {fileID: 3586491415078184626}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -45,3 +49,99 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   _debugAllOn: 1
+--- !u!114 &8423151259897990698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4351018382781704222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b408ec664d2b28a45aa5f80480598e3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerDataManager
+  _synergyManager: {fileID: 0}
+  _playerStat: {fileID: 11400000, guid: 28eeee6c0f831f44393f56fedd1c9222, type: 2}
+  _level: 1
+  _gold: 0
+  _maxBaseHealth: 0
+  _currentBaseHealth: 0
+--- !u!114 &8140035803927745397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4351018382781704222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8671bf31c6f0649468d77bb3be8925bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SynergyManager
+  OnUnitCreated:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8140035803927745397}
+        m_TargetAssemblyTypeName: SynergyManager, Assembly-CSharp
+        m_MethodName: ChangedSynergy
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnUnitRemoved:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8140035803927745397}
+        m_TargetAssemblyTypeName: SynergyManager, Assembly-CSharp
+        m_MethodName: RemoveSynergy
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _unitCount: 0
+  _log: 1
+--- !u!114 &651773196946485032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4351018382781704222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 828684002203c9f44b0b24e6e4bcd2be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SummonManager
+  _synergyManager: {fileID: 0}
+  _playerDataManager: {fileID: 0}
+  units:
+  - {fileID: 11400000, guid: 42c65043e3ed84a4f9d15502cdb0fc1e, type: 2}
+  - {fileID: 11400000, guid: 6f6a3629b26de474c9fbdf776215566f, type: 2}
+  - {fileID: 11400000, guid: cd707799f7dc4e34cb90d06e1f138d58, type: 2}
+  - {fileID: 11400000, guid: 8085adba1f3e175448a3a2a771effdcf, type: 2}
+  _summonSO: {fileID: 11400000, guid: 78cd8cc80ec1d984e9375d6e88f08fce, type: 2}
+  SummonLog: 1
+--- !u!114 &3586491415078184626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4351018382781704222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1baa8ab0c926664448af434a2d22aaa7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CombineMangager
+  _synergyManager: {fileID: 0}
