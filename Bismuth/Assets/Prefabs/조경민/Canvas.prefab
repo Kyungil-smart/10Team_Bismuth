@@ -3270,7 +3270,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6158085240343990307}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 826322223353458871}
+        m_TargetAssemblyTypeName: SettingsPopupUI, Assembly-CSharp
+        m_MethodName: OnClickClosePopup
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2045847358620441976
 GameObject:
   m_ObjectHideFlags: 0
@@ -4545,7 +4557,7 @@ GameObject:
   - component: {fileID: 1676088272111648574}
   - component: {fileID: 6271065600326325067}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: LanguageText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5004,7 +5016,7 @@ GameObject:
   - component: {fileID: 5917096508810648622}
   - component: {fileID: 393845665855986874}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: ControlText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6327,7 +6339,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1909127386492218128}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1240089873778284907}
+        m_TargetAssemblyTypeName: GameViewPanelUI, Assembly-CSharp
+        m_MethodName: OnClickFast
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3856876745427020866
 GameObject:
   m_ObjectHideFlags: 0
@@ -6874,7 +6898,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8546600123945716071}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 826322223353458871}
+        m_TargetAssemblyTypeName: SettingsPopupUI, Assembly-CSharp
+        m_MethodName: OnClickShowControl
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &4104733587453222856
 GameObject:
   m_ObjectHideFlags: 0
@@ -8299,7 +8335,7 @@ GameObject:
   - component: {fileID: 3632962509681918373}
   - component: {fileID: 5460672395285329998}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: VolumeText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11073,7 +11109,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2723675871503355333}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 826322223353458871}
+        m_TargetAssemblyTypeName: SettingsPopupUI, Assembly-CSharp
+        m_MethodName: OnClickShowVolume
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6848521932653653127
 GameObject:
   m_ObjectHideFlags: 0
@@ -13255,6 +13303,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2549419889369407219}
+  - component: {fileID: 826322223353458871}
   m_Layer: 5
   m_Name: SettingsPopup
   m_TagString: Untagged
@@ -13283,6 +13332,24 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &826322223353458871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8095677492117287897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87c12ca42e0890a4dbb27ad4dc7aac67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SettingsPopupUI
+  _controlText: {fileID: 393845665855986874}
+  _volumeText: {fileID: 5460672395285329998}
+  _languageText: {fileID: 6271065600326325067}
+  _controlPanel: {fileID: 7197067550295975914}
+  _volumePanel: {fileID: 1482934850389860895}
+  _languagePanel: {fileID: 5991655110331039751}
 --- !u!1 &8119399063564422878
 GameObject:
   m_ObjectHideFlags: 0
@@ -13403,7 +13470,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6467124570909146506}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1240089873778284907}
+        m_TargetAssemblyTypeName: GameViewPanelUI, Assembly-CSharp
+        m_MethodName: OnClickSettings
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8280068009123557890
 GameObject:
   m_ObjectHideFlags: 0
@@ -14046,7 +14125,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1458653577661235758}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 826322223353458871}
+        m_TargetAssemblyTypeName: SettingsPopupUI, Assembly-CSharp
+        m_MethodName: OnClickShowLanguage
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8535360608325539654
 GameObject:
   m_ObjectHideFlags: 0
@@ -15319,4 +15410,16 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1355993846531902701}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1240089873778284907}
+        m_TargetAssemblyTypeName: GameViewPanelUI, Assembly-CSharp
+        m_MethodName: OnClickPause
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
