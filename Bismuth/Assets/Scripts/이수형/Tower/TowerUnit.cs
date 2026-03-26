@@ -36,7 +36,17 @@ public class TowerUnit : MonoBehaviour
             selectionCollider = GetComponent<Collider2D>();
 
         if (selectionCollider == null)
-            selectionCollider = gameObject.AddComponent<BoxCollider2D>();
+        {
+            BoxCollider2D box = gameObject.AddComponent<BoxCollider2D>();
+
+            if (spriteRenderer != null && spriteRenderer.sprite != null)
+            {
+                box.size = spriteRenderer.sprite.bounds.size;
+                box.offset = spriteRenderer.sprite.bounds.center;
+            }
+
+            selectionCollider = box;
+        }
 
         if (spriteRenderer != null)
         {
@@ -76,5 +86,11 @@ public class TowerUnit : MonoBehaviour
             spriteRenderer.color = defaultColor;
             spriteRenderer.sortingOrder = defaultSortingOrder;
         }
+    }
+
+    public void SetSelectionColliderEnabled(bool isEnabled)
+    {
+        if (selectionCollider != null)
+            selectionCollider.enabled = isEnabled;
     }
 }

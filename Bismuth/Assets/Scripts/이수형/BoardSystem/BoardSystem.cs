@@ -5,6 +5,14 @@ public class BoardSystem : MonoBehaviour
 {
     public static BoardSystem Instance { get; private set; }
 
+    public enum RelocateResult
+    {
+        Invalid = 0,
+        SameSlot = 1,
+        Moved = 2,
+        Swapped = 3
+    }
+
     [System.Serializable]
     public class SlotData
     {
@@ -53,7 +61,7 @@ public class BoardSystem : MonoBehaviour
 
         if (placementSlotRoot == null)
         {
-            Debug.LogError("[BoardSystem] placementSlotRoot가 비어 있습니다.");
+            DebugTool.Error("placementSlotRoot가 비어 있습니다.", DebugType.Board, this);
             return;
         }
 
@@ -69,6 +77,8 @@ public class BoardSystem : MonoBehaviour
                 slotMap.Add(slot, new SlotData(slot));
             }
         }
+
+        DebugTool.Log($"보드 재구성 완료 - 슬롯 수: {slotMap.Count}", DebugType.Board, this);
     }
 
     public bool TryGetSlotFromWorld(Vector3 worldPos, out SlotData slotData)
@@ -82,6 +92,16 @@ public class BoardSystem : MonoBehaviour
         PlacementSlot slot = hit.GetComponent<PlacementSlot>();
         if (slot == null)
             slot = hit.GetComponentInParent<PlacementSlot>();
+
+        if (slot == null)
+            return false;
+
+        return slotMap.TryGetValue(slot, out slotData);
+    }
+
+    public bool TryGetSlotData(PlacementSlot slot, out SlotData slotData)
+    {
+        slotData = null;
 
         if (slot == null)
             return false;
@@ -103,7 +123,7 @@ public class BoardSystem : MonoBehaviour
 
         if (towerPrefab == null)
         {
-            Debug.LogWarning("[BoardSystem] towerPrefab이 비어 있습니다.");
+            DebugTool.Warnning("towerPrefab이 비어 있습니다.", DebugType.Board, this);
             return false;
         }
 
@@ -135,6 +155,12 @@ public class BoardSystem : MonoBehaviour
         targetSlot.isOccupied = true;
         targetSlot.occupiedTower = createdTower;
 
+        DebugTool.Log(
+            $"새 타워 배치 성공 - {createdTower.TowerId} -> {targetSlot.slot.name}",
+            DebugType.Board,
+            this
+        );
+
         return true;
     }
 
@@ -146,5 +172,130 @@ public class BoardSystem : MonoBehaviour
             return false;
 
         return PlaceNewTower(towerPrefab, slotData, out createdTower);
+    }
+
+    public bool TryRelocateOrSwapFromWorld(TowerUnit tower, Vector3 worldPos, out RelocateResult result)
+    {
+        result = RelocateResult.Invalid;
+
+        if (tower == null || tower.CurrentSlot == null)
+            return false;
+
+        if (!TryGetSlotFromWorld(worldPos, out SlotData targetSlot))
+            return false;
+
+        return TryRelocateOrSwap(tower, targetSlot, out result);
+    }
+
+    public bool TryRelocateOrSwap(TowerUnit tower, SlotData targetSlot, out RelocateResult result)
+    {
+        result = RelocateResult.Invalid;
+
+        if (tower == null || targetSlot == null || targetSlot.slot == null)
+            return false;
+
+        if (!TryGetSlotData(tower.CurrentSlot, out SlotData sourceSlot))
+        {
+            DebugTool.Error("현재 타워의 sourceSlot을 찾지 못했습니다.", DebugType.Board, this);
+            return false;
+        }
+
+        if (!sourceSlot.isOccupied || sourceSlot.occupiedTower != tower)
+        {
+            DebugTool.Warnning(
+                $"sourceSlot 점유 정보가 타워와 일치하지 않아 자동 보정합니다. slot={sourceSlot.slot.name}",
+                DebugType.Board,
+                this
+            );
+
+            sourceSlot.isOccupied = true;
+            sourceSlot.occupiedTower = tower;
+        }
+
+        if (sourceSlot == targetSlot)
+        {
+            tower.SnapToCurrentSlot();
+            result = RelocateResult.SameSlot;
+
+            DebugTool.Log(
+                $"같은 슬롯 드롭 - {tower.TowerId} / {sourceSlot.slot.name}",
+                DebugType.Board,
+                this
+            );
+
+            return true;
+        }
+
+        if (!targetSlot.isOccupied)
+        {
+            sourceSlot.isOccupied = false;
+            sourceSlot.occupiedTower = null;
+
+            targetSlot.isOccupied = true;
+            targetSlot.occupiedTower = tower;
+
+            tower.SetPlacedSlot(targetSlot.slot);
+
+            result = RelocateResult.Moved;
+
+            DebugTool.Log(
+                $"타워 이동 성공 - {tower.TowerId}: {sourceSlot.slot.name} -> {targetSlot.slot.name}",
+                DebugType.Board,
+                this
+            );
+
+            return true;
+        }
+
+        TowerUnit targetTower = targetSlot.occupiedTower;
+
+        if (targetTower == null)
+        {
+            DebugTool.Warnning(
+                $"targetSlot이 점유 상태인데 occupiedTower가 null입니다. 이동으로 보정합니다. slot={targetSlot.slot.name}",
+                DebugType.Board,
+                this
+            );
+
+            sourceSlot.isOccupied = false;
+            sourceSlot.occupiedTower = null;
+
+            targetSlot.isOccupied = true;
+            targetSlot.occupiedTower = tower;
+
+            tower.SetPlacedSlot(targetSlot.slot);
+
+            result = RelocateResult.Moved;
+            return true;
+        }
+
+        if (targetTower == tower)
+        {
+            tower.SnapToCurrentSlot();
+            result = RelocateResult.SameSlot;
+            return true;
+        }
+
+        sourceSlot.isOccupied = true;
+        sourceSlot.occupiedTower = targetTower;
+
+        targetSlot.isOccupied = true;
+        targetSlot.occupiedTower = tower;
+
+        PlacementSlot sourcePlacementSlot = sourceSlot.slot;
+        PlacementSlot targetPlacementSlot = targetSlot.slot;
+
+        targetTower.SetPlacedSlot(sourcePlacementSlot);
+        tower.SetPlacedSlot(targetPlacementSlot);
+
+        result = RelocateResult.Swapped;
+
+        DebugTool.Log(
+            $"타워 스왑 성공 - {tower.TowerId}({sourcePlacementSlot.name} -> {targetPlacementSlot.name}) <-> {targetTower.TowerId}({targetPlacementSlot.name} -> {sourcePlacementSlot.name})",
+            DebugType.Board,
+            this
+        );
+
+        return true;
     }
 }
