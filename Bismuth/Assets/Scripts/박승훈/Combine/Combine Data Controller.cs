@@ -14,6 +14,8 @@ public class CombineDataController : MonoBehaviour
 
     [SerializeField] private bool _log = true;
 
+    private int _dataCount = 0;
+
     private void Start()
     {
         DebugTool.DebugSelect(DebugType.Combine, _log);
@@ -40,11 +42,14 @@ public class CombineDataController : MonoBehaviour
         {
             string[] cells = lines[i].Split(splitSymbol);
             CombineData data = CombineData.CreateFromSheetRow(cells);
+            
             if (data != null)
             {
-                DebugTool.Log($"{data.SourceUnit1}", DebugType.Combine, this);
                 combineDatabase.AddUnit(data);
+                _dataCount++;
             }
         }
+        
+        DebugTool.Log($"[{_dataCount} 개의 조합 식을 로드하였습니다.", DebugType.Combine, this);
     }
 }

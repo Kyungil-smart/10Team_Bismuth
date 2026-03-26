@@ -1,9 +1,13 @@
+using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class UnitStat : MonoBehaviour
 {
     public int Id;
     public int Tier;
+    public int Level;
+    public int SummonTime;
     public string Name;
     public float AttackPower;
     public float AttackSpeed;
@@ -12,7 +16,5 @@ public class UnitStat : MonoBehaviour
     public float AttackArea;
     public UnitData.AttackTypes attackTypes;
     public int AttackTargetCount;
-    public string Synerge1;
-    public string Synerge2;
-    public string Synerge3;
+    public int[] SynergIDs;
 }

@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 828684002203c9f44b0b24e6e4bcd2be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SummonManager
+  _synergyManager: {fileID: 0}
   units:
   - {fileID: 11400000, guid: 42c65043e3ed84a4f9d15502cdb0fc1e, type: 2}
   - {fileID: 11400000, guid: 6f6a3629b26de474c9fbdf776215566f, type: 2}
