@@ -16,13 +16,24 @@ public class SynergyUI : MonoBehaviour
     [SerializeField] private TMP_Text _dNameText; // 설명칸에 들어갈 시너지 이름 텍스트
     [SerializeField] private TMP_Text _descriptionText; // 시너지 설명
 
-    public void SetData() // 매개변수로 데이터받기
+    public void SetData(int synergyId, int count) // 매개변수로 데이터받기
     {
-        //_icon.sprite = 데이터.isActive ? activeSprite : inactiveSprite;
-        //_nameText.text = $"{데이터.name}";
-        //_countText.text = $"{데이터.currentCount}/{데이터.MaxCount}";
+        SynergyManager.SynergyType type = (SynergyManager.SynergyType)synergyId;
 
-        //_dNameText.text = $"{데이터.name}";
-        //_descriptionText.text = $"{데이터.description}";
+        string name = type.ToString();
+        string currentCount = count.ToString();
+        _hNameText.text = name;
+        _countText.text = $"{currentCount} / 0"; // TODO: 최대는 임시로 0으로 설정, 각 시너지에 맞게 수정
     }
 }
+/*
+public void SetData() // 매개변수로 데이터받기
+{
+    //_icon.sprite = 데이터.isActive ? activeSprite : inactiveSprite;
+    //_nameText.text = $"{데이터.name}";
+    //_countText.text = $"{데이터.currentCount}/{데이터.MaxCount}";
+
+    //_dNameText.text = $"{데이터.name}";
+    //_descriptionText.text = $"{데이터.description}";
+}
+*/
