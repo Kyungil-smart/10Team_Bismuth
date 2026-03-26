@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class BoardSystem : MonoBehaviour
 {
+    public static BoardSystem Instance { get; private set; }
+
     [System.Serializable]
     public class SlotData
     {
@@ -29,7 +31,19 @@ public class BoardSystem : MonoBehaviour
 
     private void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            DebugTool.Warnning("BoardSystem이 중복 생성되었습니다.", DebugType.Board, this);
+        }
+
+        Instance = this;
         RebuildBoard();
+    }
+
+    private void OnDestroy()
+    {
+        if (Instance == this)
+            Instance = null;
     }
 
     [ContextMenu("Rebuild Board")]

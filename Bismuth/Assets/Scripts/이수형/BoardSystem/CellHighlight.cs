@@ -2,15 +2,31 @@ using UnityEngine;
 
 public class CellHighlight : MonoBehaviour
 {
+    public static CellHighlight Instance { get; private set; }
+
     float highlightScaleMultiplier = 0.5f;
 
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private Color validColor = new Color(0f, 1f, 0f, 0.35f);
     [SerializeField] private Color invalidColor = new Color(1f, 0f, 0f, 0.35f);
 
+    private void Awake()
+    {
+        if (spriteRenderer == null)
+            spriteRenderer = GetComponent<SpriteRenderer>();
+
+        Instance = this;
+    }
+
     private void Reset()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+    }
+
+    private void OnDestroy()
+    {
+        if (Instance == this)
+            Instance = null;
     }
 
     public void Show(PlacementSlot slot, bool canPlace)
