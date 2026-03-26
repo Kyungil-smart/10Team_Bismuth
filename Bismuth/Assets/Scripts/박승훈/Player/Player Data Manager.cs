@@ -4,6 +4,8 @@ using UnityEngine.Events;
 
 public class PlayerDataManager : MonoBehaviour
 {
+    [SerializeField] private SynergyManager _synergyManager;
+    
     [Header("━━━━ 플레이어 스탯 데이터 ━━━━")]
     [Tooltip("플레이어 스탯 SO")]
     [SerializeField] private PlayerSO _playerStat;
@@ -11,14 +13,21 @@ public class PlayerDataManager : MonoBehaviour
     [Tooltip("플레이어 레벨(소환 레벨)")]
     [SerializeField] private int _level;
 
+    [Tooltip("플레이어 소지 골드")]
+    [SerializeField] private int _gold;
+    
+    private void Awake()
+    {
+        Init();
+        PlayerStatInit();
+    }
+
     public int Level
     {
         get => _level; 
         set => _level = value;
     }
     
-    [Tooltip("플레이어 소지 골드")]
-    [SerializeField] private int _gold;
 
     public int Gold
     {
@@ -38,13 +47,6 @@ public class PlayerDataManager : MonoBehaviour
         get => _currentBaseHealth; 
         set => _currentBaseHealth = value;
     }
-    
-    [SerializeField] private SynergyManager _synergyManager;
-
-    private void Awake()
-    {
-        
-    }
 
     private void Start()
     {
@@ -54,7 +56,7 @@ public class PlayerDataManager : MonoBehaviour
 
     private void Init()
     {
-        
+        _synergyManager = GetComponent<SynergyManager>();
     }
 
     private void PlayerStatInit()
