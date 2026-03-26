@@ -55,7 +55,7 @@ public class TowerUnit : MonoBehaviour
         }
     }
 
-    public void SetPlacedCell(Vector3Int cellPos)
+    public void SetPlacedSlot(PlacementSlot slot)
     {
         CurrentSlot = slot;
         SnapToCurrentSlot();

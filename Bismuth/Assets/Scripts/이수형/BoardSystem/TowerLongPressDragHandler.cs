@@ -78,7 +78,7 @@ public class TowerLongPressDragHandler : MonoBehaviour
         pressedTime = Time.time;
         pressedScreenPos = Input.mousePosition;
 
-        DebugTool.Log("타워 홀드 시작", DebugType.Tower, this);
+        DebugTool.Log("타워 홀드 시작", DebugType.Unit, this);
     }
 
     private void BeginDrag()
@@ -93,7 +93,7 @@ public class TowerLongPressDragHandler : MonoBehaviour
 
         UpdateDrag();
 
-        DebugTool.Log("타워 드래그 시작", DebugType.Tower, this);
+        DebugTool.Log("타워 드래그 시작", DebugType.Unit, this);
     }
 
     private void UpdateDrag()
@@ -169,22 +169,22 @@ public class TowerLongPressDragHandler : MonoBehaviour
             if (!success || relocateResult == BoardSystem.RelocateResult.Invalid)
             {
                 towerUnit.SnapToCurrentSlot();
-                DebugTool.Log("드롭 실패 - 유효하지 않은 위치라 원위치 복귀", DebugType.Tower, this);
+                DebugTool.Log("드롭 실패 - 유효하지 않은 위치라 원위치 복귀", DebugType.Unit, this);
             }
             else
             {
                 switch (relocateResult)
                 {
                     case BoardSystem.RelocateResult.SameSlot:
-                        DebugTool.Log("같은 슬롯에 드롭", DebugType.Tower, this);
+                        DebugTool.Log("같은 슬롯에 드롭", DebugType.Unit, this);
                         break;
 
                     case BoardSystem.RelocateResult.Moved:
-                        DebugTool.Log("빈 슬롯으로 이동 완료", DebugType.Tower, this);
+                        DebugTool.Log("빈 슬롯으로 이동 완료", DebugType.Unit, this);
                         break;
 
                     case BoardSystem.RelocateResult.Swapped:
-                        DebugTool.Log("다른 타워와 위치 교체 완료", DebugType.Tower, this);
+                        DebugTool.Log("다른 타워와 위치 교체 완료", DebugType.Unit, this);
                         break;
                 }
             }
@@ -195,7 +195,7 @@ public class TowerLongPressDragHandler : MonoBehaviour
 
     private void CancelHold(string reason)
     {
-        DebugTool.Log(reason, DebugType.Tower, this);
+        DebugTool.Log(reason, DebugType.Unit, this);
         ResetState();
     }
 
