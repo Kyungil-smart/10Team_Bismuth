@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
     {
         GenerateManager<GameSceneManager>();
         GenerateManager<AudioManager>();
+        GenerateManager<TimeScaleController>();
         
         DebugTool.DebugPrintAll(_debugAllOn);
     }

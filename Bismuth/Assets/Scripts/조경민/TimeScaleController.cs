@@ -20,6 +20,7 @@ public class TimeScaleController : MonoBehaviour
         }
 
         Instance = this;
+        DontDestroyOnLoad(gameObject);
     }
 
     // Time.timeScale 조정
