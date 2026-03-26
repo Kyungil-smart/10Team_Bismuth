@@ -87,7 +87,10 @@ public class TowerLongPressDragHandler : MonoBehaviour
         dragOffset = transform.position - mouseWorld;
 
         isDragging = true;
+
+        towerUnit.SetSelectionColliderEnabled(false);
         towerUnit.SetDragVisual(true);
+
         UpdateDrag();
 
         DebugTool.Log("타워 드래그 시작", DebugType.Tower, this);
@@ -112,29 +115,79 @@ public class TowerLongPressDragHandler : MonoBehaviour
         if (cellHighlight == null)
             cellHighlight = CellHighlight.Instance;
 
-        if (boardSystem.TryGetSlotFromWorld(mouseWorld, out BoardSystem.SlotData slotData))
-        {
-            if (cellHighlight != null)
-                cellHighlight.Show(slotData.slot, true);
-        }
-        else
+        if (!boardSystem.TryGetSlotFromWorld(mouseWorld, out BoardSystem.SlotData slotData))
         {
             if (cellHighlight != null)
                 cellHighlight.Hide();
+            return;
         }
+
+        CellHighlight.HighlightState highlightState;
+
+        if (slotData.slot == towerUnit.CurrentSlot)
+        {
+            highlightState = CellHighlight.HighlightState.Move;
+        }
+        else if (!slotData.isOccupied)
+        {
+            highlightState = CellHighlight.HighlightState.Move;
+        }
+        else if (slotData.occupiedTower != towerUnit)
+        {
+            highlightState = CellHighlight.HighlightState.Swap;
+        }
+        else
+        {
+            highlightState = CellHighlight.HighlightState.Move;
+        }
+
+        if (cellHighlight != null)
+            cellHighlight.Show(slotData.slot, highlightState);
     }
 
     private void Release()
     {
         if (isDragging)
         {
-            towerUnit.SnapToCurrentSlot();
+            Vector3 mouseWorld = GetMouseWorld();
+
+            BoardSystem.RelocateResult relocateResult = BoardSystem.RelocateResult.Invalid;
+
+            bool success = false;
+            if (boardSystem != null)
+            {
+                success = boardSystem.TryRelocateOrSwapFromWorld(
+                    towerUnit,
+                    mouseWorld,
+                    out relocateResult
+                );
+            }
+
             towerUnit.SetDragVisual(false);
-            DebugTool.Log("드래그 종료 - 1단계에서는 원위치 복귀", DebugType.Tower, this);
-        }
-        else
-        {
-            DebugTool.Log("홀드 해제 - 드래그 시작 전 종료", DebugType.Tower, this);
+            towerUnit.SetSelectionColliderEnabled(true);
+
+            if (!success || relocateResult == BoardSystem.RelocateResult.Invalid)
+            {
+                towerUnit.SnapToCurrentSlot();
+                DebugTool.Log("드롭 실패 - 유효하지 않은 위치라 원위치 복귀", DebugType.Tower, this);
+            }
+            else
+            {
+                switch (relocateResult)
+                {
+                    case BoardSystem.RelocateResult.SameSlot:
+                        DebugTool.Log("같은 슬롯에 드롭", DebugType.Tower, this);
+                        break;
+
+                    case BoardSystem.RelocateResult.Moved:
+                        DebugTool.Log("빈 슬롯으로 이동 완료", DebugType.Tower, this);
+                        break;
+
+                    case BoardSystem.RelocateResult.Swapped:
+                        DebugTool.Log("다른 타워와 위치 교체 완료", DebugType.Tower, this);
+                        break;
+                }
+            }
         }
 
         ResetState();
@@ -175,6 +228,7 @@ public class TowerLongPressDragHandler : MonoBehaviour
         {
             towerUnit.SnapToCurrentSlot();
             towerUnit.SetDragVisual(false);
+            towerUnit.SetSelectionColliderEnabled(true);
         }
 
         ResetState();
