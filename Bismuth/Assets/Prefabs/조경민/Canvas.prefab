@@ -702,7 +702,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5388804005956696305}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6123841394702567201}
+        m_TargetAssemblyTypeName: PausePopupUI, Assembly-CSharp
+        m_MethodName: OnClickMainMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &316351942418564500
 GameObject:
   m_ObjectHideFlags: 0
@@ -1714,7 +1726,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5108538256471231719}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6123841394702567201}
+        m_TargetAssemblyTypeName: PausePopupUI, Assembly-CSharp
+        m_MethodName: OnClickSettings
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &949369236935022714
 GameObject:
   m_ObjectHideFlags: 0
@@ -7682,7 +7706,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3796688829999796460}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6123841394702567201}
+        m_TargetAssemblyTypeName: PausePopupUI, Assembly-CSharp
+        m_MethodName: OnClickResume
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &4462384823983938586
 GameObject:
   m_ObjectHideFlags: 0
@@ -11622,6 +11658,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 726057409074022819}
+  - component: {fileID: 6123841394702567201}
   m_Layer: 5
   m_Name: PausePopup
   m_TagString: Untagged
@@ -11650,6 +11687,24 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &6123841394702567201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6934473203848328767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2aa05bdab16481a4bb23edca89f84916, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PausePopupUI
+  _menuText: {fileID: 2662153339225538298}
+  _resumeText: {fileID: 3713462156253203070}
+  _settingsText: {fileID: 2363207831001066427}
+  _restartText: {fileID: 8251071277743227025}
+  _mainMenuText: {fileID: 868826645630999584}
+  _settingsPopup: {fileID: 8095677492117287897}
 --- !u!1 &6965854786593117701
 GameObject:
   m_ObjectHideFlags: 0
@@ -12140,7 +12195,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6251320507872207814}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6123841394702567201}
+        m_TargetAssemblyTypeName: PausePopupUI, Assembly-CSharp
+        m_MethodName: OnClickResume
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7197067550295975914
 GameObject:
   m_ObjectHideFlags: 0
@@ -14391,7 +14458,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6148976903232072223}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 826322223353458871}
+        m_TargetAssemblyTypeName: SettingsPopupUI, Assembly-CSharp
+        m_MethodName: OnClickClosePopup
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8452311188711971291
 GameObject:
   m_ObjectHideFlags: 0
@@ -15159,7 +15238,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3420388168228451528}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6123841394702567201}
+        m_TargetAssemblyTypeName: PausePopupUI, Assembly-CSharp
+        m_MethodName: OnClickRestart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8833002994023842457
 GameObject:
   m_ObjectHideFlags: 0

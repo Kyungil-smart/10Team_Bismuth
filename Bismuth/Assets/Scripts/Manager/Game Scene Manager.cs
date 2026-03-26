@@ -28,6 +28,13 @@ public class GameSceneManager : MonoBehaviour
         SceneManager.LoadScene(CurrentSceneIndex() + 1);
     }
 
+    // 씬 재시작
+    public void ReloadScene()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(CurrentSceneIndex());
+    }
+
     public int CurrentSceneIndex()
     {
         Debug.Log(SceneManager.GetActiveScene().buildIndex);
@@ -37,6 +44,7 @@ public class GameSceneManager : MonoBehaviour
     // 타이틀 씬 이동
     public void LoadTitle()
     {
+        Time.timeScale = 1f;
         SceneManager.LoadScene((int)SceneIndex.TitleScene);
     }
 
