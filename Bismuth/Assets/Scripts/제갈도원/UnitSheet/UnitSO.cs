@@ -41,12 +41,12 @@ public class UnitSO : ScriptableObject
 
     // 시너지 태그로 유닛 검색 
     // ex) 인간 , 전사
-    public List<UnitData> GetUnitsBySynergy(string synergyTag)
+    public List<UnitData> GetUnitsBySynergy(int synergyTag)
     {
         List<UnitData> result = new List<UnitData>();
         foreach (UnitData unit in units)
         {
-            if (unit.Synergy1 == synergyTag || unit.Synergy2 == synergyTag || unit.Synergy3 == synergyTag)
+            if (unit.SynergyIDs[0] == synergyTag || unit.SynergyIDs[1] == synergyTag || unit.SynergyIDs[2] == synergyTag)
                 result.Add(unit);
         }
         return result;

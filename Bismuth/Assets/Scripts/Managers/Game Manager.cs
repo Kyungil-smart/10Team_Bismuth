@@ -3,6 +3,8 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     private static GameManager _instance;
+
+    [SerializeField] private bool _debugAllOn = true;
     
     private void Awake()
     {
@@ -23,7 +25,7 @@ public class GameManager : MonoBehaviour
         GenerateManager<GameSceneManager>();
         GenerateManager<AudioManager>();
         
-        DebugTool.DebugAllOn();
+        DebugTool.DebugPrintAll(_debugAllOn);
     }
 
     private void Start()

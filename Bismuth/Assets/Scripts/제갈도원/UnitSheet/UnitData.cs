@@ -49,14 +49,11 @@ public class UnitData
 
     [Space(8)]
     [Header("━━━━ 시너지 (조합) ━━━━")]
-    [Tooltip("시너지 1 (구글시트 K열)\n예: 인간, 엘프, 오크, 수인, 정령 / 전사, 거너, 마법사 등")]
+    [Tooltip("시너지 1 (구글시트 K열)\n" +
+             "예: 인간, 엘프, 오크, 수인, 정령 / 전사, 거너, 마법사 등\n" +
+             "시너지 3\n3성 이상 유닛은 시너지 3개 보유")]
     [SerializeField]
-    private string synergy1;
-
-    [Tooltip("시너지 2")] [SerializeField] private string synergy2;
-
-    [Tooltip("시너지 3\n3성 이상 유닛은 시너지 3개 보유")] [SerializeField]
-    private string synergy3;
+    private int[] synergyIDs = new int[3];
 
     [Space(8)] [Header("━━━━ 비주얼 ━━━━")] [Tooltip("유닛 외형 컨셉\n3성+ 유닛의 비주얼 디자인 가이드")] [TextArea(2, 4)] [SerializeField]
     private string visualConcept;
@@ -72,9 +69,7 @@ public class UnitData
     public float AttackArea => attackArea;
     public AttackTypes AttackType => attackType;
     public int AttackTargetCount => attackTargetCount;
-    public string Synergy1 => synergy1;
-    public string Synergy2 => synergy2;
-    public string Synergy3 => synergy3;
+    public int[] SynergyIDs => synergyIDs;
     public string VisualConcept => visualConcept;
 
 
@@ -85,7 +80,6 @@ public class UnitData
         Targeting, // 단일
         AOE, // 광역
     }
-
 
     /// <summary>시트 I열: 타겟팅 / 광역 (구버전 단일·공격타겟 한 열 값도 허용)</summary>
     public static AttackTypes ParseTargetingMethod(string value)
@@ -135,9 +129,9 @@ public class UnitData
         float.TryParse(SafeGet(line, 7), out attackArea);
         attackType = ParseTargetingMethod(SafeGet(line, 8));
         attackTargetCount = ParseAttackTargetCount(SafeGet(line, 9));
-        synergy1 = SafeGet(line, 10);
-        synergy2 = SafeGet(line, 11);
-        synergy3 = SafeGet(line, 12);
+        int.TryParse(SafeGet(line, 10), out synergyIDs[0]);
+        int.TryParse(SafeGet(line, 11), out synergyIDs[1]);
+        int.TryParse(SafeGet(line, 12), out synergyIDs[2]);
         visualConcept = SafeGet(line, 13);
     }
 
