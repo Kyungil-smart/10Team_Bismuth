@@ -5,6 +5,7 @@ using UnityEngine;
 [Serializable]
 public class SummonChanceData
 {
+    [SerializeField] private string _level;
     [SerializeField] private int _enhancementLevel; // 강화 단계
     [SerializeField] private float _tier1;
     [SerializeField] private float _tier2;
@@ -32,6 +33,7 @@ public class SummonChanceData
         SummonChanceData data = new();
 
         data._enhancementLevel = nextLevel; // 강화 단계
+        data._level = $"{nextLevel + 1} 단계";
         data._tier1 = ParseFloat(SafeGet(line, 1));         // b
         data._tier2 = ParseFloat(SafeGet(line, 2));         // c
         data._tier3 = ParseFloat(SafeGet(line, 3));         // d
@@ -42,7 +44,7 @@ public class SummonChanceData
         return data;
     }
 
-    // 배열 범위 초과 , null 인 ㄱ 영우
+    // 배열 범위 초과 , null 인 경우
     private static string SafeGet(string[] arr, int index)
     {
         return (arr != null && index < arr.Length) ? arr[index]?.Trim() ?? "" : "";
