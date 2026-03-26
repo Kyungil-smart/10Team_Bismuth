@@ -44,12 +44,6 @@ public class CellHighlight : MonoBehaviour
 
     public void Show(PlacementSlot slot, HighlightState state)
     {
-        if (slot == null)
-        {
-            Hide();
-            return;
-        }
-
         gameObject.SetActive(true);
         transform.position = new Vector3(slot.WorldCenter.x, slot.WorldCenter.y, 0f);
         transform.localScale = new Vector3(

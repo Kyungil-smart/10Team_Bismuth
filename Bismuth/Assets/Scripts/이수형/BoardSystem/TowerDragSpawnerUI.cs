@@ -81,7 +81,7 @@ public class TowerDragSpawnerUI : MonoBehaviour, IBeginDragHandler, IDragHandler
 
         if (!placed)
         {
-            Debug.Log("[TowerDragSpawnerUI] 배치 실패: 유효한 슬롯이 아니거나 이미 점유된 슬롯입니다.");
+            Debug.Log("[TowerDragSpawnerUI] 배치 실패: Summonable 셀이 아니거나 이미 점유된 칸입니다.");
         }
 
         CleanupPreview();
@@ -111,12 +111,12 @@ public class TowerDragSpawnerUI : MonoBehaviour, IBeginDragHandler, IDragHandler
 
         Vector3 worldPos = ScreenToWorld(screenPos);
 
-        if (boardSystem.TryGetSlotFromWorld(worldPos, out BoardSystem.SlotData slotData))
+        if (boardSystem.TryGetCellFromWorld(worldPos, out BoardSystem.CellData cell))
         {
-            bool canPlace = !slotData.isOccupied;
+            bool canPlace = !cell.isOccupied;
 
             if (cellHighlight != null)
-                cellHighlight.Show(slotData.slot, canPlace);
+                cellHighlight.Show(cell.worldCenter, canPlace);
         }
         else
         {
