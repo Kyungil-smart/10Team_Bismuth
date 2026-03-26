@@ -12,14 +12,11 @@ public class SummonChanceDataController : MonoBehaviour
     [Tooltip("소환 확률 시트 Url 입니다.")]
     [SerializeField] private SheetData _summonChanceSheet;
 
-    [Header("━━━━ 로그 결과 ━━━━")]
-    [SerializeField]
     private List<SummonChanceData> _rows = new();
 
-    public IReadOnlyList<SummonChanceData> Rows => _rows;
     [SerializeField] private bool log;
-    private Dictionary<int, SummonChanceData> _dataByEnhancementLevel = new();
 
+    private Dictionary<int, SummonChanceData> _dataByEnhancementLevel = new();
 
     private void Start()
     {
@@ -93,62 +90,5 @@ public class SummonChanceDataController : MonoBehaviour
 
             _dataByEnhancementLevel.Add(data.EnhancementLevel, data);
         }
-    }
-
-    // 디버깅용 
-    // SummonChanceTester.cs 에
-    // 강화 단계에 해당하는 소환 확률 데이터를 반환
-
-    public SummonChanceData GetByEnhancementLevel(int enhancementLevel)
-    {
-        if (_dataByEnhancementLevel.TryGetValue(enhancementLevel, out SummonChanceData data))
-            return data;
-
-        return null;
-    }
-    
-    public int GetRandomTier(int enhancementLevel)
-    {
-        SummonChanceData data = GetByEnhancementLevel(enhancementLevel);
-
-        if (data == null)
-        {
-            DebugTool.Warnning($"강화 단계 {enhancementLevel} 데이터가 없습니다.", DebugType.Data, this);
-            return -1;
-        }
-
-        float randomValue = Random.Range(0f, 100f);
-
-        if (randomValue < data.Tier1)
-            return 1;
-
-        if (randomValue < data.Tier1 + data.Tier2)
-            return 2;
-
-        if (randomValue < data.Tier1 + data.Tier2 + data.Tier3)
-            return 3;
-
-        return 4;
-    }
-
-    /// <summary>
-    /// 현재 강화 단계 데이터 로그 출력
-    /// </summary>
-    public void PrintChanceData(int enhancementLevel)
-    {
-        SummonChanceData data = GetByEnhancementLevel(enhancementLevel);
-
-        if (data == null)
-        {
-            DebugTool.Warnning($"강화 단계 {enhancementLevel} 데이터가 없습니다.", DebugType.Data, this);
-            return;
-        }
-
-        DebugTool.Log(
-            $"[확률 데이터] 강화 단계: {data.EnhancementLevel} / " +
-            $"1등급: {data.Tier1}, 2등급: {data.Tier2}, 3등급: {data.Tier3}, 4등급: {data.Tier4}, 합계: {data.SumPersent}",
-            DebugType.Data,
-            this
-        );
     }
 }

@@ -30,7 +30,10 @@ public class SummonChanceSO : ScriptableObject
         {
             SummonChanceData data = _rows[i];
             if (data == null)
+            {
+                DebugTool.Warnning($"{Rows}", DebugType.Data, this);
                 continue;
+            }
 
             if (_dataByEnhancementLevel.ContainsKey(data.EnhancementLevel))
             {
@@ -40,15 +43,5 @@ public class SummonChanceSO : ScriptableObject
 
             _dataByEnhancementLevel.Add(data.EnhancementLevel, data);
         }
-    }
-
-    
-    // 딕셔너리에서 강화 단계 키 찾기
-    public SummonChanceData GetByEnhancementLevel(int enhancementLevel)
-    {
-        if (_dataByEnhancementLevel.TryGetValue(enhancementLevel, out SummonChanceData data))
-            return data;
-
-        return null;
     }
 }
