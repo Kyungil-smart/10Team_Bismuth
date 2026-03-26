@@ -9,51 +9,32 @@ using Random = UnityEngine.Random;
 
 public class SummonManager : MonoBehaviour
 {
-    TestAction testAction;
+    [SerializeField] private SynergyManager _synergyManager;
     
     [SerializeField] private List<UnitSO> units = new List<UnitSO>(4);
     
-    [SerializeField] private bool SummonLog = false;
+    [SerializeField] private bool SummonLog = true;
 
-    private GameObject _unitPrefab;
-
-    private void Awake()
-        => Init();
 
     private void Start()
     {
         DebugTool.DebugSelect(DebugType.Summon, SummonLog);
     }
 
-    private void OnEnable()
-    {
-        testAction.Enable();
-
-        testAction.Test.Random.started += OnRandom;
-    }
-
-    private void OnDisable()
-    {
-        testAction.Test.Random.started -= OnRandom;
-
-        testAction.Disable();
-    }
-
-    private void OnRandom(InputAction.CallbackContext context)
-    {
-        if (context.started)
-        {
-            SummonUnit();
-        }
-    }
-
     public void SummonUnit()
     {
-        _unitPrefab = SetUnitStat(RandomUnit(RandomTier()));
+        UnitData data = RandomUnit(RandomTier());
+        
+        GameObject _unitPrefab = LoadUnitPrefab(data);
+        
+        UnitStat stat = SetUnitStat(_unitPrefab, data);
+        
         if (_unitPrefab == null)
             return;
-
-        GameObject.Instantiate(_unitPrefab, RandomLoc(), Quaternion.identity);
+        
+        Instantiate(_unitPrefab, RandomLoc(), Quaternion.identity);
+        
+        _synergyManager.OnUnitCreated?.Invoke(stat.SynergIDs);
     }
 
     private Vector2 RandomLoc()
@@ -68,23 +49,27 @@ public class SummonManager : MonoBehaviour
     private UnitData RandomUnit(int tier)
     {
         int _randomUnit = Random.Range(0, units[tier].Units.Count - 1);
-        DebugTool.Log($"랜덤 티어 : {tier + 1}" +
+        DebugTool.Log($"랜덤 티어 : {tier + 1} | " +
                       $"랜덤 번호 : [{_randomUnit + 1}] | " +
                       $"유닛 이름 : {units[tier].Units[_randomUnit].UnitName}", DebugType.Summon, this);
 
         return units[tier].Units[_randomUnit];
     }
 
-    private GameObject SetUnitStat(UnitData unitData)
+    private GameObject LoadUnitPrefab(UnitData data)
     {
-        GameObject unit = (GameObject)AssetDatabase.LoadAssetAtPath($"Assets/Test/{unitData.UnitName}.prefab", typeof(GameObject));
-        if (unit == null)
+        return (GameObject)AssetDatabase.LoadAssetAtPath($"Assets/Prefabs/박승훈/Units/{data.UnitName}.prefab", typeof(GameObject));
+    }
+
+    private UnitStat SetUnitStat(GameObject unit, UnitData unitData)
+    {
+        UnitStat stat = unit?.GetComponent<UnitStat>();
+
+        if (stat == null)
         {
-            DebugTool.Warnning($"[{unitData.UnitName}] 해당 유닛을 찾을 수 없습니다!", DebugType.Summon, this);
+            DebugTool.Warnning($"{stat.Name} 을 찾을 수 없습니다.", DebugType.Summon, this);
             return null;
         }
-
-        UnitStat stat = unit.GetComponent<UnitStat>();
 
         stat.Id = unitData.Id;
         stat.Tier = unitData.Tier;
@@ -96,17 +81,24 @@ public class SummonManager : MonoBehaviour
         stat.AttackArea = unitData.AttackArea;
         stat.attackTypes = unitData.AttackType;
         stat.AttackTargetCount = unitData.AttackTargetCount;
-        stat.Synerge1 = unitData.Synergy1;
-        stat.Synerge2 = unitData.Synergy2;
-        stat.Synerge3 = unitData.Synergy3;
+        stat.SynergIDs = unitData.SynergyIDs;
         
         PrintStat(stat);
-        
-        return unit;
+
+        return stat;
     }
+
+    // 시너지 객채 생성 매서드
+    // 시너지 id와 시너지 enum과 비교
 
     private void PrintStat(UnitStat stat)
     {
+        if (stat == null)
+        {
+            DebugTool.Warnning("스탯이 없습니다.", DebugType.Summon, this);
+            return;
+        }
+
         DebugTool.Log($"ID : {stat.Id}\n" +
                       $"Tier : {stat.Tier}\n" +
                       $"Name : {stat.Name}\n" +
@@ -116,13 +108,10 @@ public class SummonManager : MonoBehaviour
                       $"Range : {stat.Range}\n" +
                       $"AttackArea : {stat.AttackArea}\n" +
                       $"AttackType : {stat.attackTypes}\n" +
-                      $"Synerge1 : {stat.Synerge1}\n" +
-                      $"Synerge2 : {stat.Synerge2}\n" +
-                      $"Synerge3 : {stat.Synerge3}", DebugType.Summon, this);
-    }
-
-    private void Init()
-    {
-        testAction = new TestAction();
+                      $"AttackTargetCount : {stat.AttackTargetCount}\n" +
+                      $"Synerge1 : {stat.SynergIDs[0]}\n" +
+                      $"Synerge2 : {stat.SynergIDs[1]}\n" +
+                      $"Synerge3 : {stat.SynergIDs[2]}\n"
+            , DebugType.Summon, this);
     }
 }

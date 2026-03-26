@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class BoardSystem : MonoBehaviour
 {
@@ -14,28 +15,29 @@ public class BoardSystem : MonoBehaviour
     }
 
     [System.Serializable]
-    public class SlotData
+    public class CellData
     {
-        public PlacementSlot slot;
+        public Vector3Int cellPos;
         public Vector3 worldCenter;
         public bool isOccupied;
         public TowerUnit occupiedTower;
 
-        public SlotData(PlacementSlot slot)
+        public CellData(Vector3Int cellPos, Vector3 worldCenter)
         {
-            this.slot = slot;
-            this.worldCenter = slot.WorldCenter;
+            this.cellPos = cellPos;
+            this.worldCenter = worldCenter;
             this.isOccupied = false;
             this.occupiedTower = null;
         }
     }
 
     [Header("References")]
-    [SerializeField] private Transform placementSlotRoot;
-    [SerializeField] private LayerMask summonableSlotLayer;
+    [SerializeField] private Tilemap summonableTilemap;
     [SerializeField] private Transform placedTowerRoot;
 
-    private Dictionary<PlacementSlot, SlotData> slotMap = new Dictionary<PlacementSlot, SlotData>();
+    private Dictionary<Vector3Int, CellData> cellMap = new Dictionary<Vector3Int, CellData>();
+
+    public Tilemap SummonableTilemap => summonableTilemap;
 
     private void Awake()
     {
@@ -57,46 +59,37 @@ public class BoardSystem : MonoBehaviour
     [ContextMenu("Rebuild Board")]
     public void RebuildBoard()
     {
-        slotMap.Clear();
+        cellMap.Clear();
 
-        if (placementSlotRoot == null)
+        if (summonableTilemap == null)
         {
             DebugTool.Error("placementSlotRoot가 비어 있습니다.", DebugType.Board, this);
             return;
         }
 
-        PlacementSlot[] slots = placementSlotRoot.GetComponentsInChildren<PlacementSlot>(true);
+        BoundsInt bounds = summonableTilemap.cellBounds;
 
-        foreach (PlacementSlot slot in slots)
+        foreach (Vector3Int pos in bounds.allPositionsWithin)
         {
-            if (slot == null)
+            if (!summonableTilemap.HasTile(pos))
                 continue;
 
-            if (!slotMap.ContainsKey(slot))
-            {
-                slotMap.Add(slot, new SlotData(slot));
-            }
+            Vector3 center = summonableTilemap.GetCellCenterWorld(pos);
+            cellMap[pos] = new CellData(pos, center);
         }
 
         DebugTool.Log($"보드 재구성 완료 - 슬롯 수: {slotMap.Count}", DebugType.Board, this);
     }
 
-    public bool TryGetSlotFromWorld(Vector3 worldPos, out SlotData slotData)
+    public bool TryGetCellFromWorld(Vector3 worldPos, out CellData cell)
     {
-        slotData = null;
+        cell = null;
 
-        Collider2D hit = Physics2D.OverlapPoint(worldPos, summonableSlotLayer);
-        if (hit == null)
+        if (summonableTilemap == null)
             return false;
 
-        PlacementSlot slot = hit.GetComponent<PlacementSlot>();
-        if (slot == null)
-            slot = hit.GetComponentInParent<PlacementSlot>();
-
-        if (slot == null)
-            return false;
-
-        return slotMap.TryGetValue(slot, out slotData);
+        Vector3Int cellPos = summonableTilemap.WorldToCell(worldPos);
+        return cellMap.TryGetValue(cellPos, out cell);
     }
 
     public bool TryGetSlotData(PlacementSlot slot, out SlotData slotData)
@@ -111,13 +104,13 @@ public class BoardSystem : MonoBehaviour
 
     public bool CanPlaceAtWorld(Vector3 worldPos, out SlotData slotData)
     {
-        if (!TryGetSlotFromWorld(worldPos, out slotData))
+        if (!TryGetCellFromWorld(worldPos, out cell))
             return false;
 
-        return !slotData.isOccupied;
+        return !cell.isOccupied;
     }
 
-    public bool PlaceNewTower(GameObject towerPrefab, SlotData targetSlot, out TowerUnit createdTower)
+    public bool PlaceNewTower(GameObject towerPrefab, CellData targetCell, out TowerUnit createdTower)
     {
         createdTower = null;
 
@@ -127,10 +120,10 @@ public class BoardSystem : MonoBehaviour
             return false;
         }
 
-        if (targetSlot == null || targetSlot.slot == null)
+        if (targetCell == null)
             return false;
 
-        if (targetSlot.isOccupied)
+        if (targetCell.isOccupied)
             return false;
 
         if (placedTowerRoot == null)
@@ -141,19 +134,21 @@ public class BoardSystem : MonoBehaviour
 
         GameObject towerObj = Instantiate(
             towerPrefab,
-            targetSlot.worldCenter,
+            targetCell.worldCenter,
             Quaternion.identity,
             placedTowerRoot
         );
 
         createdTower = towerObj.GetComponent<TowerUnit>();
         if (createdTower == null)
+        {
             createdTower = towerObj.AddComponent<TowerUnit>();
+        }
 
-        createdTower.SetPlacedSlot(targetSlot.slot);
+        createdTower.SetPlacedCell(targetCell.cellPos);
 
-        targetSlot.isOccupied = true;
-        targetSlot.occupiedTower = createdTower;
+        targetCell.isOccupied = true;
+        targetCell.occupiedTower = createdTower;
 
         DebugTool.Log(
             $"새 타워 배치 성공 - {createdTower.TowerId} -> {targetSlot.slot.name}",
@@ -168,10 +163,10 @@ public class BoardSystem : MonoBehaviour
     {
         createdTower = null;
 
-        if (!CanPlaceAtWorld(worldPos, out SlotData slotData))
+        if (!CanPlaceAtWorld(worldPos, out CellData cell))
             return false;
 
-        return PlaceNewTower(towerPrefab, slotData, out createdTower);
+        return PlaceNewTower(towerPrefab, cell, out createdTower);
     }
 
     public bool TryRelocateOrSwapFromWorld(TowerUnit tower, Vector3 worldPos, out RelocateResult result)
