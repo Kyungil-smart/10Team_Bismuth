@@ -19,6 +19,7 @@ public class SynergyManager : MonoBehaviour
 {
     public UnityEvent<UnitStat> OnUnitCreated;
     public UnityEvent<UnitStat> OnUnitRemoved;
+    public event Action<Dictionary<int, List<int>>> OnSynergyChanged;
 
     private Dictionary<int, List<int>> synergiesDict = new();
 
@@ -56,6 +57,7 @@ public class SynergyManager : MonoBehaviour
         }
 
         PrintSynergy();
+        OnSynergyChanged?.Invoke(synergiesDict);
     }
 
     public void RemoveSynergy(UnitStat stat)
@@ -74,6 +76,7 @@ public class SynergyManager : MonoBehaviour
         }
         
         PrintSynergy();
+        OnSynergyChanged?.Invoke(synergiesDict);
     }
 
     private void PrintSynergy()
