@@ -107,6 +107,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UnitStat
   Id: 0
   Tier: 0
+  Level: 0
+  SummonTime: 0
   Name: 
   AttackPower: 0
   AttackSpeed: 0
@@ -115,9 +117,7 @@ MonoBehaviour:
   AttackArea: 0
   attackTypes: 0
   AttackTargetCount: 0
-  Synerge1: 
-  Synerge2: 
-  Synerge3: 
+  SynergIDs: 
 --- !u!114 &1266156064840711309
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -130,3 +130,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7fa0d71fc452f84d96c18fef7c59e88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UnitController
+  _synergyManager: {fileID: 0}
+  _unitStat: {fileID: 0}
