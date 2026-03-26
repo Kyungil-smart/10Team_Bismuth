@@ -1605,7 +1605,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6613065614780158130}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7358752814444049304}
+        m_TargetAssemblyTypeName: ControlPanelUI, Assembly-CSharp
+        m_MethodName: OnClickUpgrade
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &884386007390530579
 GameObject:
   m_ObjectHideFlags: 0
@@ -4633,6 +4645,7 @@ GameObject:
   - component: {fileID: 995690892749745681}
   - component: {fileID: 1575638241993862646}
   - component: {fileID: 755371278617983316}
+  - component: {fileID: 7358752814444049304}
   m_Layer: 5
   m_Name: ControlPanel
   m_TagString: Untagged
@@ -4706,6 +4719,25 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &7358752814444049304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2817100659589562846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5aa02fffde1a19449ae09a69e2f23caa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ControlPanelUI
+  _timeText: {fileID: 9098905479559599289}
+  _goldText: {fileID: 5518389365186841552}
+  _craftingStationText: {fileID: 5449692561113276951}
+  _synergyText: {fileID: 939275647599133388}
+  _drawText: {fileID: 6750234883604626132}
+  _upgradeText: {fileID: 1518303218917269566}
+  _craftingStation: {fileID: 5951458653977317484}
 --- !u!1 &2823213013911371582
 GameObject:
   m_ObjectHideFlags: 0
@@ -13783,9 +13815,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc88449a9a4824842a405f8bf5d039b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameViewPanelUI
-  _WaveText: {fileID: 4359439171270034616}
+  _waveText: {fileID: 4359439171270034616}
   _fastButtonImage: {fileID: 1909127386492218128}
-  _PauseButtonImage: {fileID: 1355993846531902701}
+  _pauseButtonImage: {fileID: 1355993846531902701}
   _settingsPopup: {fileID: 8095677492117287897}
   _pausePanel: {fileID: 6848521932653653127}
   _fastSpeed: 2
@@ -13912,7 +13944,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1061514629942161769}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7358752814444049304}
+        m_TargetAssemblyTypeName: ControlPanelUI, Assembly-CSharp
+        m_MethodName: OnClickCraftingStation
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8095677492117287897
 GameObject:
   m_ObjectHideFlags: 0
@@ -15645,7 +15689,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2969727191818041644}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7358752814444049304}
+        m_TargetAssemblyTypeName: ControlPanelUI, Assembly-CSharp
+        m_MethodName: OnClickDraw
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &9058999665658615317
 GameObject:
   m_ObjectHideFlags: 0
