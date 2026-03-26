@@ -28,12 +28,14 @@ public class PausePopupUI : MonoBehaviour
         _mainMenuText.text = "Main Menu";
     }
 
+    // 게임 재개 버튼
     public void OnClickResume()
     {
         gameObject.SetActive(false);
         TimeScaleController.Instance.SetPausePopup(false);
     }
 
+    // 환경 설정 버튼
     public void OnClickSettings()
     {
         _settingsPopup.transform.SetAsLastSibling();
@@ -41,11 +43,13 @@ public class PausePopupUI : MonoBehaviour
         TimeScaleController.Instance.SetSettingsPopup(true);
     }
 
+    // 다시하기 버튼
     public void OnClickRestart()
     {
         GameSceneManager.Instance.ReloadScene();
     }
 
+    // 메인 메뉴 버튼
     public void OnClickMainMenu()
     {
         GameSceneManager.Instance.LoadTitle();
