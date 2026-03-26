@@ -39,8 +39,6 @@ public class PlayerDataManager : MonoBehaviour
         set => _currentBaseHealth = value;
     }
     
-    private Dictionary<int, List<Synergy>> synergies;
-    
     [SerializeField] private SynergyManager _synergyManager;
 
     private void Awake()
