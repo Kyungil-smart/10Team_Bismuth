@@ -53,7 +53,7 @@ public struct GoogleSheetLoader
 
             DebugTool.Log(
                 $"[GoogleSheetLoader] 시트 로드 성공 - 형식:{format}, 라인 수:{lines.Length}",
-                DebugType.Data);
+                DebugType.Data, this);
 
             successCallback?.Invoke(SplitSymbol, lines);
         }

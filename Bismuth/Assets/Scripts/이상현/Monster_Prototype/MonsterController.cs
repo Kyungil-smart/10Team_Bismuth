@@ -60,7 +60,7 @@ public class MonsterController : MonoBehaviour
             _animationController.SetMoving(false);
         }
         
-        DebugTool.Log($"{name} : 경로 끝 도달", DebugType.Enemy);
+        DebugTool.Log($"{name} : 경로 끝 도달", DebugType.Enemy, this);
         StartCoroutine(DeactivateAfterDelay());
     }
 

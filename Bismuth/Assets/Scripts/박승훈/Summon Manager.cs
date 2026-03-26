@@ -34,7 +34,7 @@ public class SummonManager : MonoBehaviour
         
         Instantiate(_unitPrefab, RandomLoc(), Quaternion.identity);
         
-        _synergyManager.OnUnitCreated?.Invoke(stat.SynergIDs);
+        _synergyManager.OnUnitCreated?.Invoke(stat);
     }
 
     private Vector2 RandomLoc()
@@ -49,6 +49,7 @@ public class SummonManager : MonoBehaviour
     private UnitData RandomUnit(int tier)
     {
         int _randomUnit = Random.Range(0, units[tier].Units.Count - 1);
+        
         DebugTool.Log($"랜덤 티어 : {tier + 1} | " +
                       $"랜덤 번호 : [{_randomUnit + 1}] | " +
                       $"유닛 이름 : {units[tier].Units[_randomUnit].UnitName}", DebugType.Summon, this);
