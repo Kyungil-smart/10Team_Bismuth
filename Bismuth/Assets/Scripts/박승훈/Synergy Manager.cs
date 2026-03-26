@@ -17,10 +17,12 @@ using UnityEngine.InputSystem;
  */
 public class SynergyManager : MonoBehaviour
 {
-    public UnityEvent<int[]> OnUnitCreated;
-    public UnityEvent<int[]> OnUnitRemoved;
+    public UnityEvent<UnitStat> OnUnitCreated;
+    public UnityEvent<UnitStat> OnUnitRemoved;
 
-    private Dictionary<int, int> synergiesDict = new();
+    private Dictionary<int, List<int>> synergiesDict = new();
+
+    [SerializeField] private int _unitCount = 0;
 
     [SerializeField] private bool _log = true;
 
@@ -29,53 +31,107 @@ public class SynergyManager : MonoBehaviour
         DebugTool.DebugSelect(DebugType.Synergy, _log);
     }
 
-    public void ChangedSynergy(int[] synergyId)
+    public void ChangedSynergy(UnitStat stat)
     {
-        for (int i = 0; i < synergyId.Length; i++)
+        _unitCount++;
+        for (int i = 0; i < stat.SynergIDs.Length; i++)
         {
-            if (synergyId[i] == 0)
+            if (stat.SynergIDs[i] == 0)
                 break;
             
-            if (!synergiesDict.ContainsKey(synergyId[i]))
-                synergiesDict.Add(synergyId[i], 1);
+            if (!synergiesDict.ContainsKey(stat.SynergIDs[i]))
+            {
+                List<int> list = new();
+                list.Add(stat.Id);
+                synergiesDict.Add(stat.SynergIDs[i], list);
+            }
             
-            else if (synergiesDict.ContainsKey(synergyId[i]))
-                synergiesDict[synergyId[i]]++;
+            else
+            {
+                if (synergiesDict[stat.SynergIDs[i]].Contains(stat.Id))
+                    continue;
+                else 
+                    synergiesDict[stat.SynergIDs[i]].Add(stat.Id);
+            }
         }
 
-        string log = "[시너지 추가]\n[보유 시너지]\n";
+        PrintSynergy();
+    }
+
+    public void RemoveSynergy(UnitStat stat)
+    {
+        _unitCount--;
+        for (int i = 0; i < stat.SynergIDs.Length; i++)
+        {
+            if (stat.SynergIDs[i] == 0)
+                break;
+            
+            if (synergiesDict.ContainsKey(stat.SynergIDs[i]))
+                synergiesDict[stat.SynergIDs[i]].Remove(stat.Id);
+            
+            if(synergiesDict[stat.SynergIDs[i]].Count == 0)
+                synergiesDict.Remove(stat.SynergIDs[i]);
+        }
+        
+        PrintSynergy();
+    }
+
+    private void PrintSynergy()
+    {
+        string log = $"[보유 유닛 수] : {_unitCount}\n[보유 시너지]\n";
+
         foreach (var value in synergiesDict)
-            log += $"시너지 : {value.Key} | 활성 개수 : {value.Value}\n";
+        {
+            switch (value.Key)
+            {
+                case (int)SynergyType.Warrior :
+                    log += $"시너지 : 전사 | 활성 개수 : {value.Value.Count}\n";
+                    break;
+                case (int)SynergyType.Magician :
+                    log += $"시너지 : 마법사 | 활성 개수 : {value.Value.Count}\n";
+                    break;
+                case (int)SynergyType.Archer :
+                    log += $"시너지 : 궁수 | 활성 개수 : {value.Value.Count}\n";
+                    break;
+                case (int)SynergyType.Gunner :
+                    log += $"시너지 : 거너 | 활성 개수 : {value.Value.Count}\n";
+                    break;
+                case (int)SynergyType.Fighter :
+                    log += $"시너지 : 격투가 | 활성 개수 : {value.Value.Count}\n";
+                    break;
+                case (int)SynergyType.Human :
+                    log += $"시너지 : 인간 | 활성 개수 : {value.Value.Count}\n";
+                    break;
+                case (int)SynergyType.Elf :
+                    log += $"시너지 : 엘프 | 활성 개수 : {value.Value.Count}\n";
+                    break;
+                case (int)SynergyType.Orc :
+                    log += $"시너지 : 오크 | 활성 개수 : {value.Value.Count}\n";
+                    break;
+                case (int)SynergyType.Furry :
+                    log += $"시너지 : 수인 | 활성 개수 : {value.Value.Count}\n";
+                    break;
+                case (int)SynergyType.Spirit :
+                    log += $"시너지 : 정령 | 활성 개수 : {value.Value.Count}\n";
+                    break;
+            }
+        }
         
         DebugTool.Log(log, DebugType.Synergy, this);
     }
-
-    public void RemoveSynergy(int[] synergyId)
+    
+    public enum SynergyType
     {
-        for (int i = 0; i < synergyId.Length; i++)
-        {
-            if (synergyId[i] == 0)
-                break;
-            
-            if (synergiesDict.ContainsKey(synergyId[i]))
-            {
-                synergiesDict[synergyId[i]]--;
-                
-                DebugTool.Log($"{synergiesDict[synergyId[i]]}", DebugType.Synergy, this);
-
-                if (synergiesDict[synergyId[i]] == 0)
-                    synergiesDict.Remove(synergyId[i]);
-                
-            }
-            else
-                DebugTool.Log($"{synergyId[i]} 시너지가 없습니다.", DebugType.Synergy, this);
-        }
-        
-        string log = "[시너지 삭제]\n[보유 시너지]\n";
-        
-        foreach (var value in synergiesDict)
-            log += $"시너지 : {value.Key} | 활성 개수 : {value.Value}\n";
-        
-        DebugTool.Log(log, DebugType.Synergy, this);
+        None = 0,
+        Warrior = 50001,
+        Magician = 50002,
+        Archer = 50003,
+        Gunner = 50004,
+        Fighter = 50005,
+        Human = 50006,
+        Elf = 50007,
+        Orc = 50008,
+        Furry = 50009,
+        Spirit = 50010
     }
 }

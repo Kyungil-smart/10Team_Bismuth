@@ -20,7 +20,7 @@ public class UnitController : MonoBehaviour
     
     private void OnEnable()
     {
-        Destroy(gameObject, 2f);
+        // Destroy(gameObject, 2f);
     }
 
     private void OnDestroy()
@@ -37,6 +37,6 @@ public class UnitController : MonoBehaviour
             return;
         }
         
-        _synergyManager.OnUnitRemoved?.Invoke(_unitStat.SynergIDs);
+        _synergyManager.OnUnitRemoved?.Invoke(_unitStat);
     }
 }
