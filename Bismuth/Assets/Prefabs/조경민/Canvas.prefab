@@ -4976,6 +4976,7 @@ GameObject:
   - component: {fileID: 3350677823745330744}
   - component: {fileID: 6327521366463532151}
   - component: {fileID: 3284090024494717630}
+  - component: {fileID: 5888027716500233357}
   m_Layer: 5
   m_Name: SynergyPanel
   m_TagString: Untagged
@@ -5042,6 +5043,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &5888027716500233357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2986997649913734555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 679485a90c9d6664786b0f7c7461eadd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SynergyScrollViewUI
+  _synergyContent: {fileID: 8297800164729030232}
+  _synergyPrefab: {fileID: 0}
 --- !u!1 &3039810588888479447
 GameObject:
   m_ObjectHideFlags: 0
