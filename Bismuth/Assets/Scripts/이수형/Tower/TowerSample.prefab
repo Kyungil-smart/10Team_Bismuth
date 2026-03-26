@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 3982294472729009834}
   - component: {fileID: 1649441523569744824}
   - component: {fileID: 8851745515330457238}
+  - component: {fileID: -7205329488006778691}
+  - component: {fileID: -6799757619251509871}
   m_Layer: 0
   m_Name: TowerSample
   m_TagString: Untagged
@@ -105,3 +107,70 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TowerUnit
   towerId: TempTower
+  spriteRenderer: {fileID: 0}
+  selectionCollider: {fileID: 0}
+  dragAlpha: 0.65
+  dragSortingOrderBoost: 50
+--- !u!61 &-7205329488006778691
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4662089180270182216}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.39, y: 1.17}
+    newSize: {x: 1.39, y: 1.17}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 1.39, y: 1.17}
+  m_EdgeRadius: 0
+--- !u!114 &-6799757619251509871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4662089180270182216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b81c0c635a4529149b23fa9ef69bb9b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TowerLongPressDragHandler
+  boardSystem: {fileID: 0}
+  worldCamera: {fileID: 0}
+  cellHighlight: {fileID: 0}
+  holdDuration: 1
+  holdCancelThresholdPixels: 20
