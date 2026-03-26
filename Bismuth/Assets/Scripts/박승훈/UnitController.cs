@@ -10,7 +10,7 @@ public class UnitController : MonoBehaviour
     {
         
         if(_synergyManager == null)
-            _synergyManager = GameObject.Find("Synergy Manager")?.GetComponent<SynergyManager>();
+            _synergyManager = GameObject.Find("GameManager")?.GetComponent<SynergyManager>();
     }
 
     private void Start()
@@ -25,11 +25,6 @@ public class UnitController : MonoBehaviour
 
     private void OnDestroy()
     {
-        if (_synergyManager == null)
-        {
-            DebugTool.Warnning($"Synergy Manager 없음", DebugType.Synergy, this);
-            return;
-        }
 
         if (_unitStat == null)
         {
