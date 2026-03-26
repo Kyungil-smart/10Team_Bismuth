@@ -130,6 +130,7 @@ GameObject:
   - component: {fileID: 6660247358213827108}
   - component: {fileID: 6514614695151640177}
   - component: {fileID: 1355286019776031107}
+  - component: {fileID: 1547480153219236795}
   m_Layer: 5
   m_Name: Synergy
   m_TagString: Untagged
@@ -198,6 +199,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.ContentSizeFitter
   m_HorizontalFit: 0
   m_VerticalFit: 2
+--- !u!114 &1547480153219236795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1450187371008959540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1d95af4cdb97af479ffb6565732f0d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SynergyUI
+  _icon: {fileID: 3365913130491500447}
+  activeSprite: {fileID: 0}
+  inactiveSprite: {fileID: 0}
+  _hNameText: {fileID: 2127892174925397032}
+  _countText: {fileID: 6881827010657184491}
+  _dNameText: {fileID: 1779779661915687384}
+  _descriptionText: {fileID: 4193594156395477981}
 --- !u!1 &1913991793430091064
 GameObject:
   m_ObjectHideFlags: 0

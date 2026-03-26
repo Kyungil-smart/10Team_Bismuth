@@ -6,13 +6,13 @@ public class GameViewPanelUI : MonoBehaviour
 {
     [Header("━━━━ 텍스트 ━━━━")]
     [Tooltip("웨이브(Wave 0 (00/00)")]
-    [SerializeField] private TMP_Text _WaveText;
+    [SerializeField] private TMP_Text _waveText;
 
     [Header("━━━━ 버튼(이미지) ━━━━")]
     [Tooltip("배속 버튼")]
     [SerializeField] private Image _fastButtonImage;
     [Tooltip("일시정지 버튼")]
-    [SerializeField] private Image _PauseButtonImage;
+    [SerializeField] private Image _pauseButtonImage;
 
     [Header("━━━━ 패널 ━━━━")]
     [Tooltip("환경설정 팝업")]
@@ -42,7 +42,7 @@ public class GameViewPanelUI : MonoBehaviour
     private void Start()
     {
         // TODO : 수정해야됨(현재 웨이브정보 받아오기, 로컬라이징)
-        _WaveText.text = "Wave 00 (00/00)";
+        _waveText.text = "Wave 00 (00/00)";
     }
 
     // 환경설정 버튼
@@ -88,6 +88,6 @@ public class GameViewPanelUI : MonoBehaviour
     // 일시정지 버튼 이미지 조정
     private void UpdatePauseButton()
     {
-        _PauseButtonImage.sprite = _isPausePanelOpened ? _playSprite : _pauseSprite;
+        _pauseButtonImage.sprite = _isPausePanelOpened ? _playSprite : _pauseSprite;
     }
 }
