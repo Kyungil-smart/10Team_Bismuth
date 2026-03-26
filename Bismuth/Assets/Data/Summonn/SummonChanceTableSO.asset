@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d007fe4b57c1246469c61991fa3950e0, type: 3}
+  m_Name: SummonChanceTableSO
+  m_EditorClassIdentifier: Assembly-CSharp::SummonChanceTableSO
+  _rows:
+  - _enhancementLevel: 0
+    _tier1: 90.3
+    _tier2: 9.3
+    _tier3: 0.3
+    _tier4: 0.1
+    _sumPersent: 100
+  - _enhancementLevel: 1
+    _tier1: 85.05
+    _tier2: 12.6
+    _tier3: 2.1
+    _tier4: 0.25
+    _sumPersent: 100
+  - _enhancementLevel: 2
+    _tier1: 79.3
+    _tier2: 16
+    _tier3: 4.1
+    _tier4: 0.6
+    _sumPersent: 100
+  - _enhancementLevel: 3
+    _tier1: 72
+    _tier2: 20
+    _tier3: 6.4
+    _tier4: 1.6
+    _sumPersent: 100
+  - _enhancementLevel: 4
+    _tier1: 65
+    _tier2: 22
+    _tier3: 10
+    _tier4: 3
+    _sumPersent: 100
+  - _enhancementLevel: 5
+    _tier1: 52
+    _tier2: 27
+    _tier3: 16
+    _tier4: 5
+    _sumPersent: 100
