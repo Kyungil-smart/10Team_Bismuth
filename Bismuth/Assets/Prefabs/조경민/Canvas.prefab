@@ -973,7 +973,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 3419785265950174632}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.23076923
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2190,7 +2190,7 @@ GameObject:
   - component: {fileID: 704646239998948989}
   - component: {fileID: 939275647599133388}
   m_Layer: 5
-  m_Name: SynergyListText
+  m_Name: SynergyText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9070,7 +9070,7 @@ GameObject:
   - component: {fileID: 216819028937325696}
   - component: {fileID: 5449692561113276951}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: CraftingStationText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12558,7 +12558,7 @@ GameObject:
   - component: {fileID: 8904354618060039337}
   - component: {fileID: 9098905479559599289}
   m_Layer: 5
-  m_Name: TImeText
+  m_Name: TimeText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13489,7 +13489,7 @@ GameObject:
   - component: {fileID: 161678446212928497}
   - component: {fileID: 1518303218917269566}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: RateUpText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15808,7 +15808,7 @@ GameObject:
   - component: {fileID: 6602995783577001022}
   - component: {fileID: 6750234883604626132}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: DrawText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
