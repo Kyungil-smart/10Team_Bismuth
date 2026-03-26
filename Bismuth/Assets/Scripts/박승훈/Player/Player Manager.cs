@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class PlayerManager : MonoBehaviour
+public class PlayerDataManager : MonoBehaviour
 {
     [Header("━━━━ 플레이어 스탯 데이터 ━━━━")]
     [Tooltip("플레이어 스탯 SO")]
