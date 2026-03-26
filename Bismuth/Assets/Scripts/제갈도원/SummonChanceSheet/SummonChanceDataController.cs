@@ -1,11 +1,13 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class SummonChanceDataController : MonoBehaviour
 {
+    [Header("━━━━ SO 설정 ━━━━")]
+    [Tooltip("기본 소환 확률 데이터 SO 입니다.")]
+    [SerializeField] private SummonChanceSO summonChanceSo;
+
     [Header("━━━━ 시트 설정 ━━━━")]
     [Tooltip("소환 확률 시트 Url 입니다.")]
     [SerializeField] private SheetData _summonChanceSheet;
@@ -16,21 +18,35 @@ public class SummonChanceDataController : MonoBehaviour
 
     public IReadOnlyList<SummonChanceData> Rows => _rows;
     [SerializeField] private bool log;
+    private Dictionary<int, SummonChanceData> _dataByEnhancementLevel = new();
 
 
     private void Start()
     {
         DebugTool.DebugSelect(DebugType.Data, log);
 
-        if (_summonChanceSheet == null)
+        // 1) SO가 있으면 먼저 기본값 로드
+        if (summonChanceSo != null)
         {
-            DebugTool.Warnning("summonChanceSheet 가 할당되지 않았습니다.", DebugType.Data, this);
+            _rows = new List<SummonChanceData>(summonChanceSo.Rows);
+            RebuildCache();
+            DebugTool.Log($"[소환 확률] SO {_rows.Count}행 로드 완료", DebugType.Data, this);
+        }
+
+        // 2) SheetData가 있으면 런타임 시트 값으로 갱신
+        if (_summonChanceSheet != null)
+        {
+            StartCoroutine(_summonChanceSheet.Load(OnSheetLoaded));
             return;
         }
 
-        StartCoroutine(_summonChanceSheet.Load(OnSheetLoaded));
-
+        // 3) SO/시트 둘 다 없으면 경고
+        if (summonChanceSo == null)
+        {
+            DebugTool.Warnning("SummonChanceTableSO 또는 summonChanceSheet 중 하나는 할당되어야 합니다.", DebugType.Data, this);
+        }
     }
+
     private void OnSheetLoaded(char splitSymbol, string[] lines)
     {
         _rows.Clear();
@@ -49,9 +65,35 @@ public class SummonChanceDataController : MonoBehaviour
             if (row != null)
                 _rows.Add(row);
         }
+
+        RebuildCache();
+
+        // 시트 값을 SO에도 반영(런타임 메모리 기준)
+        if (summonChanceSo != null)
+            summonChanceSo.SetRows(_rows);
+
         DebugTool.Log($"[소환 확률] {_rows.Count}행 로드 완료", DebugType.Data, this);
     }
 
+    private void RebuildCache()
+    {
+        _dataByEnhancementLevel.Clear();
+
+        for (int i = 0; i < _rows.Count; i++)
+        {
+            SummonChanceData data = _rows[i];
+            if (data == null)
+                continue;
+
+            if (_dataByEnhancementLevel.ContainsKey(data.EnhancementLevel))
+            {
+                DebugTool.Warnning($"중복 강화 단계 데이터가 있습니다. Level : {data.EnhancementLevel}", DebugType.Data, this);
+                continue;
+            }
+
+            _dataByEnhancementLevel.Add(data.EnhancementLevel, data);
+        }
+    }
 
     // 디버깅용 
     // SummonChanceTester.cs 에
@@ -59,11 +101,8 @@ public class SummonChanceDataController : MonoBehaviour
 
     public SummonChanceData GetByEnhancementLevel(int enhancementLevel)
     {
-        for (int i = 0; i < _rows.Count; i++)
-        {
-            if (_rows[i].EnhancementLevel == enhancementLevel)
-                return _rows[i];
-        }
+        if (_dataByEnhancementLevel.TryGetValue(enhancementLevel, out SummonChanceData data))
+            return data;
 
         return null;
     }
