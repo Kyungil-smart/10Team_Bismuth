@@ -1103,7 +1103,7 @@ GameObject:
   - component: {fileID: 5555502838974875213}
   - component: {fileID: 974929059615569247}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: RetryText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1156,7 +1156,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: RESTART
+  m_text: RETRY
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1376,7 +1376,6 @@ GameObject:
   - component: {fileID: 5016454060866794324}
   - component: {fileID: 1790424014539359998}
   - component: {fileID: 173990557114367287}
-  - component: {fileID: 4142508013411602864}
   m_Layer: 5
   m_Name: Background
   m_TagString: Untagged
@@ -1441,50 +1440,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &4142508013411602864
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 655679033503724943}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
-  m_Navigation:
-    m_Mode: 3
-    m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_SelectedTrigger: Selected
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 173990557114367287}
-  m_OnClick:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &879346457924128485
 GameObject:
   m_ObjectHideFlags: 0
@@ -1784,7 +1739,7 @@ RectTransform:
   m_Father: {fileID: 8194784812405320105}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -2072,7 +2027,7 @@ RectTransform:
   m_Father: {fileID: 8722762434630069009}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -2414,6 +2369,7 @@ GameObject:
   - component: {fileID: 5038026152364525334}
   - component: {fileID: 8933075154545751548}
   - component: {fileID: 1926305527375663261}
+  - component: {fileID: 4211281482369579873}
   m_Layer: 5
   m_Name: VolumePanel
   m_TagString: Untagged
@@ -2482,6 +2438,30 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4211281482369579873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1482934850389860895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f55835e0f2d07d247bdc5174f40d2996, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VolumePanelUI
+  _masterText: {fileID: 8843777777589883081}
+  _bgmText: {fileID: 6575455149372239589}
+  _sfxText: {fileID: 1914696986608861772}
+  _uiText: {fileID: 5859580876776146692}
+  _masterSlider: {fileID: 2145573888929700731}
+  _bgmSlider: {fileID: 2342911308118702486}
+  _sfxSlider: {fileID: 4106583717506051899}
+  _uiSlider: {fileID: 5192139763731493828}
+  _masterPercentText: {fileID: 2932432555455967150}
+  _bgmPercentText: {fileID: 1616196051471347962}
+  _sfxPercentText: {fileID: 5012147497930655684}
+  _uiPercentText: {fileID: 2767181528632401785}
 --- !u!1 &1510578177350980796
 GameObject:
   m_ObjectHideFlags: 0
@@ -2677,7 +2657,7 @@ GameObject:
   - component: {fileID: 1718480007267433893}
   - component: {fileID: 3705900645967995181}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: MainText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2950,7 +2930,7 @@ GameObject:
   - component: {fileID: 7187576250232836048}
   - component: {fileID: 5192139763731493828}
   m_Layer: 5
-  m_Name: Slider
+  m_Name: UISlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3149,7 +3129,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 561949933402736394}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8825106218618597317}
+        m_TargetAssemblyTypeName: GameclearPopupUI, Assembly-CSharp
+        m_MethodName: OnClickMain
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1986755446548009069
 GameObject:
   m_ObjectHideFlags: 0
@@ -3467,7 +3459,6 @@ GameObject:
   - component: {fileID: 5626080317091839910}
   - component: {fileID: 3336580190387329956}
   - component: {fileID: 339636115574689856}
-  - component: {fileID: 2658780831462122839}
   m_Layer: 5
   m_Name: Background
   m_TagString: Untagged
@@ -3532,50 +3523,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &2658780831462122839
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2146308773410078539}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
-  m_Navigation:
-    m_Mode: 3
-    m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_SelectedTrigger: Selected
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 339636115574689856}
-  m_OnClick:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &2177358011822731467
 GameObject:
   m_ObjectHideFlags: 0
@@ -4106,7 +4053,7 @@ RectTransform:
   m_Father: {fileID: 6424655063021334087}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -4509,7 +4456,7 @@ GameObject:
   - component: {fileID: 1253290016477032732}
   - component: {fileID: 2932432555455967150}
   m_Layer: 5
-  m_Name: PercentText
+  m_Name: MasterPercentText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5056,7 +5003,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SynergyScrollViewUI
   _synergyContent: {fileID: 8297800164729030232}
-  _synergyPrefab: {fileID: 0}
+  _synergyPrefab: {fileID: 1547480153219236795, guid: f66f1f990b7db4147a542d5944c54589, type: 3}
+  _synergyManager: {fileID: 0}
 --- !u!1 &3039810588888479447
 GameObject:
   m_ObjectHideFlags: 0
@@ -6439,7 +6387,7 @@ GameObject:
   - component: {fileID: 3980267156863061722}
   - component: {fileID: 2195015745241316111}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: RetryText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6492,7 +6440,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: RESTART
+  m_text: RETRY
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -7018,6 +6966,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7886452748708909249}
+  - component: {fileID: 8825106218618597317}
   m_Layer: 5
   m_Name: GameclearPopup
   m_TagString: Untagged
@@ -7046,6 +6995,25 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &8825106218618597317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4039934304121172047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0524d59eb9274f49aafdaf4b6d6af4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameclearPopupUI
+  _totalDamageText: {fileID: 2419296455182462649}
+  _damageText: {fileID: 2992529986167881289}
+  _clearText: {fileID: 8637274712759647801}
+  _stageText: {fileID: 434535675352145738}
+  _retryText: {fileID: 2195015745241316111}
+  _mainText: {fileID: 3705900645967995181}
+  _mvpImage: {fileID: 1920997196222201619}
 --- !u!1 &4062950645230780244
 GameObject:
   m_ObjectHideFlags: 0
@@ -7591,7 +7559,7 @@ RectTransform:
   m_Father: {fileID: 6524870215177652857}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -7777,7 +7745,7 @@ GameObject:
   - component: {fileID: 7924892436158001536}
   - component: {fileID: 2145573888929700731}
   m_Layer: 5
-  m_Name: Slider
+  m_Name: MasterSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8353,6 +8321,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7081975915900113903}
+  - component: {fileID: 9185962424715041829}
   m_Layer: 5
   m_Name: GameoverPopup
   m_TagString: Untagged
@@ -8381,6 +8350,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &9185962424715041829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4855909201215941436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d43358f9be54194eb877d054843a4ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameoverPopupUI
+  _gameoverText: {fileID: 6976740209523276115}
+  _retryText: {fileID: 974929059615569247}
+  _mainText: {fileID: 2208256604447157980}
 --- !u!1 &4869142475040427827
 GameObject:
   m_ObjectHideFlags: 0
@@ -8465,7 +8449,7 @@ GameObject:
   - component: {fileID: 7343600083325700839}
   - component: {fileID: 2208256604447157980}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: MainText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8601,7 +8585,7 @@ GameObject:
   - component: {fileID: 5334709281501102385}
   - component: {fileID: 2342911308118702486}
   m_Layer: 5
-  m_Name: Slider
+  m_Name: BGMSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8926,7 +8910,7 @@ RectTransform:
   m_Father: {fileID: 6929061092441748457}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -9733,7 +9717,7 @@ GameObject:
   - component: {fileID: 7389981088634368450}
   - component: {fileID: 2862140045719414309}
   m_Layer: 5
-  m_Name: RestartButton
+  m_Name: RetryButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9840,7 +9824,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7389981088634368450}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 9185962424715041829}
+        m_TargetAssemblyTypeName: GameoverPopupUI, Assembly-CSharp
+        m_MethodName: OnClickRetry
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &5561364011040702160
 GameObject:
   m_ObjectHideFlags: 0
@@ -10436,6 +10432,7 @@ GameObject:
   - component: {fileID: 9048149512352786198}
   - component: {fileID: 3512092419855033562}
   - component: {fileID: 6470102584543080957}
+  - component: {fileID: 176231224102234381}
   m_Layer: 5
   m_Name: LanguagePanel
   m_TagString: Untagged
@@ -10501,6 +10498,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &176231224102234381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5991655110331039751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2c69701c8f5ff444979410dd68fc443, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LanguagePanelUI
+  _languageText: {fileID: 6257805957692273884}
+  _languageDropdown: {fileID: 6449348920161894084}
 --- !u!1 &6069439436186272067
 GameObject:
   m_ObjectHideFlags: 0
@@ -10650,7 +10661,7 @@ GameObject:
   - component: {fileID: 3081111448390224177}
   - component: {fileID: 2767181528632401785}
   m_Layer: 5
-  m_Name: PercentText
+  m_Name: UIPercentText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10844,7 +10855,7 @@ RectTransform:
   m_Father: {fileID: 8423214566820724889}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -11148,7 +11159,7 @@ GameObject:
   - component: {fileID: 4748204913716154883}
   - component: {fileID: 1616196051471347962}
   m_Layer: 5
-  m_Name: PercentText
+  m_Name: BGMPercentText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12468,7 +12479,7 @@ GameObject:
   - component: {fileID: 4130022474411214813}
   - component: {fileID: 5012147497930655684}
   m_Layer: 5
-  m_Name: PercentText
+  m_Name: SFXPercentText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12880,7 +12891,7 @@ GameObject:
   - component: {fileID: 1217307272043474169}
   - component: {fileID: 486490164058650632}
   m_Layer: 5
-  m_Name: RestartButton
+  m_Name: RetryButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12987,7 +12998,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1217307272043474169}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8825106218618597317}
+        m_TargetAssemblyTypeName: GameclearPopupUI, Assembly-CSharp
+        m_MethodName: OnClickRetry
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7525088312938661607
 GameObject:
   m_ObjectHideFlags: 0
@@ -14281,7 +14304,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8682935056979943014}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 9185962424715041829}
+        m_TargetAssemblyTypeName: GameoverPopupUI, Assembly-CSharp
+        m_MethodName: OnClickMain
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8403854933860277870
 GameObject:
   m_ObjectHideFlags: 0
@@ -14563,7 +14598,7 @@ RectTransform:
   m_Father: {fileID: 870713823641439338}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -14616,7 +14651,7 @@ GameObject:
   - component: {fileID: 1984990354870905962}
   - component: {fileID: 4106583717506051899}
   m_Layer: 5
-  m_Name: Slider
+  m_Name: SFXSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14861,7 +14896,7 @@ RectTransform:
   m_Father: {fileID: 4383692080489743260}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -15705,9 +15740,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7358752814444049304}
-        m_TargetAssemblyTypeName: ControlPanelUI, Assembly-CSharp
-        m_MethodName: OnClickDraw
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: SummonManager, Assembly-CSharp
+        m_MethodName: SummonUnit
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
