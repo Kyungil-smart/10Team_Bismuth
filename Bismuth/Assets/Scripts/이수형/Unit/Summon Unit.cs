@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using Random = UnityEngine.Random;
 
 public class SummonUnit : MonoBehaviour
@@ -16,6 +17,7 @@ public class SummonUnit : MonoBehaviour
     public class SummonedTowerRecord
     {
         public int summonIndex;
+        public int Id;
         public string unitName;
         public int tier;
         public UnitData unitData;
@@ -50,8 +52,7 @@ public class SummonUnit : MonoBehaviour
     [SerializeField] private List<SummonedTowerRecord> ownedTowers = new List<SummonedTowerRecord>();
 
     [SerializeField] private bool summonLog = true;
-
-    private readonly Dictionary<string, GameObject> unitPrefabMap = new Dictionary<string, GameObject>();
+    
     private int summonSequence = 0;
 
     public IReadOnlyList<SummonedTowerRecord> OwnedTowers => ownedTowers;
@@ -67,7 +68,8 @@ public class SummonUnit : MonoBehaviour
         if (playerDataManager == null)
             playerDataManager = GetComponent<PlayerDataManager>();
 
-        BuildPrefabMap();
+        
+        // BuildPrefabMap();
     }
 
     private void Start()
@@ -132,6 +134,8 @@ public class SummonUnit : MonoBehaviour
         UnitStat stat = ApplyUnitStat(createdTower.gameObject, data);
 
         synergyManager?.OnUnitCreated?.Invoke(stat);
+        
+        PrintStat(stat);
 
         RegisterOwnedTower(data, createdTower, stat);
 
@@ -257,38 +261,21 @@ public class SummonUnit : MonoBehaviour
     private GameObject GetUnitPrefab(UnitData data)
     {
         if (data == null)
-            return null;
-
-        if (unitPrefabMap.Count == 0)
-            BuildPrefabMap();
-
-        unitPrefabMap.TryGetValue(data.UnitName, out GameObject prefab);
-        return prefab;
-    }
-
-    private void BuildPrefabMap()
-    {
-        unitPrefabMap.Clear();
-        
-
-        foreach (GameObject obj in unitPrefabTable)
         {
-            UnitStat stat = obj.GetComponent<UnitStat>(); 
-            if (obj == null)
-                continue;
-
-            string key = string.IsNullOrWhiteSpace(stat.Id.ToString())
-                ? obj.name
-                : stat.Id.ToString();
-
-            if (unitPrefabMap.ContainsKey(key))
-            {
-                DebugTool.Warnning($"중복 유닛 프리팹 키가 있습니다. key={key}", DebugType.Data, this);
-                continue;
-            }
-
-            unitPrefabMap.Add(key, obj);
+            DebugTool.Log("데이터 널", DebugType.Data, this);
+            return null;
         }
+
+        if (unitPrefabTable.Count == 0)
+        {
+            DebugTool.Warnning("프리팹 등록 필요", DebugType.Unit, this);
+            return null;
+        }
+        
+        // unitPrefabMap.TryGetValue(data.Id, out GameObject prefab);
+        GameObject prefab = unitPrefabTable[data.Id - 10001];
+
+        return prefab;
     }
 
     private void PrepareSpawnedTower(TowerUnit unit, UnitData data)
@@ -307,7 +294,7 @@ public class SummonUnit : MonoBehaviour
         UnitStat stat = unitObject.GetComponent<UnitStat>();
         if (stat == null)
         {
-            DebugTool.Log($"유닛 찾을 수 없음", DebugType.Unit, this);
+            DebugTool.Log("유닛 찾을 수 없음", DebugType.Unit, this);
             stat = unitObject.AddComponent<UnitStat>();
         }
 
@@ -322,7 +309,7 @@ public class SummonUnit : MonoBehaviour
         stat.attackTypes = unitData.AttackType;
         stat.AttackTargetCount = unitData.AttackTargetCount;
         stat.SynergIDs = unitData.SynergyIDs;
-        DebugTool.Log($"스탯 맵핑 완료", DebugType.Data, this);
+        DebugTool.Log("스탯 맵핑 완료", DebugType.Data, this);
         return stat;
     }
 
@@ -333,6 +320,7 @@ public class SummonUnit : MonoBehaviour
         ownedTowers.Add(new SummonedTowerRecord
         {
             summonIndex = ++summonSequence,
+            Id = stat.Id,
             unitName = data.UnitName,
             tier = data.Tier,
             unitData = data,
@@ -344,5 +332,28 @@ public class SummonUnit : MonoBehaviour
     private void CleanupNullOwnedTowers()
     {
         ownedTowers.RemoveAll(record => record == null || record.towerUnit == null);
+    }
+    private void PrintStat(UnitStat stat)
+    {
+        if (stat == null)
+        {
+            DebugTool.Warnning("스탯이 없습니다.", DebugType.Summon, this);
+            return;
+        }
+
+        DebugTool.Log($"ID : {stat.Id}\n" +
+                      $"Tier : {stat.Tier}\n" +
+                      $"Name : {stat.Name}\n" +
+                      $"AttackPower : {stat.AttackPower}\n" +
+                      $"AttackSpeed : {stat.AttackSpeed}\n" +
+                      $"CritChance : {stat.CritChance}\n" +
+                      $"Range : {stat.Range}\n" +
+                      $"AttackArea : {stat.AttackArea}\n" +
+                      $"AttackType : {stat.attackTypes}\n" +
+                      $"AttackTargetCount : {stat.AttackTargetCount}\n" +
+                      $"Synerge1 : {stat.SynergIDs[0]}\n" +
+                      $"Synerge2 : {stat.SynergIDs[1]}\n" +
+                      $"Synerge3 : {stat.SynergIDs[2]}\n"
+            , DebugType.Summon, this);
     }
 }
