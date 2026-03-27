@@ -17,17 +17,12 @@ public class UnitController : MonoBehaviour
     {
         _unitStat = GetComponent<UnitStat>();
     }
-    
-    private void OnEnable()
-    {
-        // Destroy(gameObject, 2f);
-    }
 
     private void OnDestroy()
     {
         if (_synergyManager == null)
         {
-            DebugTool.Warnning($"Synergy Manager 없음", DebugType.Synergy, this);
+            DebugTool.Warnning("Synergy Manager 없음", DebugType.Synergy, this);
             return;
         }
 
