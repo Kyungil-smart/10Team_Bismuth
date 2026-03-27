@@ -169,22 +169,22 @@ public class TowerLongPressDragHandler : MonoBehaviour
             if (!success || relocateResult == BoardSystem.RelocateResult.Invalid)
             {
                 towerUnit.SnapToCurrentSlot();
-                DebugTool.Log("드롭 실패 - 유효하지 않은 위치라 원위치 복귀", DebugType.Unit, this);
+                DebugTool.Log("드롭 실패 - 유효하지 않은 위치라 원위치 복귀", DebugType.Board, this);
             }
             else
             {
                 switch (relocateResult)
                 {
                     case BoardSystem.RelocateResult.SameSlot:
-                        DebugTool.Log("같은 슬롯에 드롭", DebugType.Unit, this);
+                        DebugTool.Log("같은 슬롯에 드롭", DebugType.Board, this);
                         break;
 
                     case BoardSystem.RelocateResult.Moved:
-                        DebugTool.Log("빈 슬롯으로 이동 완료", DebugType.Unit, this);
+                        DebugTool.Log("빈 슬롯으로 이동 완료", DebugType.Board, this);
                         break;
 
                     case BoardSystem.RelocateResult.Swapped:
-                        DebugTool.Log("다른 타워와 위치 교체 완료", DebugType.Unit, this);
+                        DebugTool.Log("다른 타워와 위치 교체 완료", DebugType.Board, this);
                         break;
                 }
             }
@@ -195,7 +195,7 @@ public class TowerLongPressDragHandler : MonoBehaviour
 
     private void CancelHold(string reason)
     {
-        DebugTool.Log(reason, DebugType.Unit, this);
+        DebugTool.Log(reason, DebugType.Board, this);
         ResetState();
     }
 
