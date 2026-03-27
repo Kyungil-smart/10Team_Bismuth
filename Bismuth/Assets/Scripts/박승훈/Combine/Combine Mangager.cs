@@ -1,8 +1,11 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class CombineMangager : MonoBehaviour
 {
     [SerializeField] private SynergyManager _synergyManager;
+    [SerializeField] private CombineSO _combineSO;
+    private List<UnitStat> _unitStats = new();
 
     private void Awake()
     {
@@ -11,7 +14,18 @@ public class CombineMangager : MonoBehaviour
     
     public void CombineUnit()
     {
-        // _synergyManager.OnUnitSummoned?.Invoke();
+        
+        
+        
+        
+        UnitStat stat = new();
+        
+        _synergyManager.OnUnitCreated?.Invoke(stat);
+    }
+
+    private void GetUnitStat()
+    {
+        
     }
 
     private void Init()

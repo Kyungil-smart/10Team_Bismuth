@@ -44,7 +44,7 @@ public class SummonUnit : MonoBehaviour
     [SerializeField] private SummonChanceSO summonSO;
 
     [Header("Prefab Table")]
-    [SerializeField] private List<UnitPrefabEntry> unitPrefabTable = new List<UnitPrefabEntry>();
+    [SerializeField] private List<GameObject> unitPrefabTable = new List<GameObject>();
 
     [Header("Owned Towers")]
     [SerializeField] private List<SummonedTowerRecord> ownedTowers = new List<SummonedTowerRecord>();
@@ -110,6 +110,7 @@ public class SummonUnit : MonoBehaviour
         }
 
         GameObject prefab = GetUnitPrefab(data);
+        
         if (prefab == null)
         {
             DebugTool.Warnning(
@@ -268,15 +269,17 @@ public class SummonUnit : MonoBehaviour
     private void BuildPrefabMap()
     {
         unitPrefabMap.Clear();
+        
 
-        foreach (UnitPrefabEntry entry in unitPrefabTable)
+        foreach (GameObject obj in unitPrefabTable)
         {
-            if (entry == null || entry.prefab == null)
+            UnitStat stat = obj.GetComponent<UnitStat>(); 
+            if (obj == null)
                 continue;
 
-            string key = string.IsNullOrWhiteSpace(entry.unitName)
-                ? entry.prefab.name
-                : entry.unitName;
+            string key = string.IsNullOrWhiteSpace(stat.Id.ToString())
+                ? obj.name
+                : stat.Id.ToString();
 
             if (unitPrefabMap.ContainsKey(key))
             {
@@ -284,26 +287,29 @@ public class SummonUnit : MonoBehaviour
                 continue;
             }
 
-            unitPrefabMap.Add(key, entry.prefab);
+            unitPrefabMap.Add(key, obj);
         }
     }
 
-    private void PrepareSpawnedTower(TowerUnit towerUnit, UnitData data)
+    private void PrepareSpawnedTower(TowerUnit unit, UnitData data)
     {
-        if (towerUnit == null)
+        if (unit == null)
             return;
 
-        towerUnit.gameObject.name = data.UnitName;
+        unit.gameObject.name = data.Id.ToString();
 
-        if (towerUnit.GetComponent<TowerLongPressDragHandler>() == null)
-            towerUnit.gameObject.AddComponent<TowerLongPressDragHandler>();
+        if (unit.GetComponent<TowerLongPressDragHandler>() == null)
+            unit.gameObject.AddComponent<TowerLongPressDragHandler>();
     }
 
     private UnitStat ApplyUnitStat(GameObject unitObject, UnitData unitData)
     {
         UnitStat stat = unitObject.GetComponent<UnitStat>();
         if (stat == null)
+        {
+            DebugTool.Log($"유닛 찾을 수 없음", DebugType.Unit, this);
             stat = unitObject.AddComponent<UnitStat>();
+        }
 
         stat.Id = unitData.Id;
         stat.Tier = unitData.Tier;
@@ -316,7 +322,7 @@ public class SummonUnit : MonoBehaviour
         stat.attackTypes = unitData.AttackType;
         stat.AttackTargetCount = unitData.AttackTargetCount;
         stat.SynergIDs = unitData.SynergyIDs;
-
+        DebugTool.Log($"스탯 맵핑 완료", DebugType.Data, this);
         return stat;
     }
 
