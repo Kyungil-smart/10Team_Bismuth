@@ -40,6 +40,9 @@ public class SummonUnit : MonoBehaviour
     [SerializeField] private BoardSystem boardSystem;
     [SerializeField] private SynergyManager synergyManager;
     [SerializeField] private PlayerDataManager playerDataManager;
+    [SerializeField] private CellHighlight cellHighlight;
+    [SerializeField] private Camera worldCamera;
+     
 
     [Header("Data")]
     [SerializeField] private List<UnitSO> units = new List<UnitSO>(4);
@@ -68,7 +71,12 @@ public class SummonUnit : MonoBehaviour
         if (playerDataManager == null)
             playerDataManager = GetComponent<PlayerDataManager>();
 
-        
+        if (cellHighlight == null)
+            cellHighlight = FindAnyObjectByType<CellHighlight>();
+        if (worldCamera == null)
+            worldCamera = Camera.main;
+
+
         // BuildPrefabMap();
     }
 
@@ -285,8 +293,16 @@ public class SummonUnit : MonoBehaviour
 
         unit.gameObject.name = data.Id.ToString();
 
-        if (unit.GetComponent<TowerLongPressDragHandler>() == null)
-            unit.gameObject.AddComponent<TowerLongPressDragHandler>();
+        TowerLongPressDragHandler dragHandler = unit.GetComponent<TowerLongPressDragHandler>();
+
+
+        //if (unit.GetComponent<TowerLongPressDragHandler>() == null)
+        //    unit.gameObject.AddComponent<TowerLongPressDragHandler>();
+
+        if (dragHandler == null)
+            dragHandler = unit.gameObject.AddComponent<TowerLongPressDragHandler>();
+
+        dragHandler.Initialize(boardSystem, worldCamera, cellHighlight);
     }
 
     private UnitStat ApplyUnitStat(GameObject unitObject, UnitData unitData)
