@@ -10,7 +10,7 @@ public class UnitController : MonoBehaviour
     {
         
         if(_synergyManager == null)
-            _synergyManager = GameObject.Find("Synergy Manager")?.GetComponent<SynergyManager>();
+            _synergyManager = GameObject.Find("GameManager")?.GetComponent<SynergyManager>();
     }
 
     private void Start()

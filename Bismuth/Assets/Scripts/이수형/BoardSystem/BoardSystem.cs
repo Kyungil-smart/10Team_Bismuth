@@ -298,4 +298,33 @@ public class BoardSystem : MonoBehaviour
 
         return true;
     }
+    public bool TryGetFirstEmptySlot(out SlotData emptySlot)
+    {
+        emptySlot = null;
+
+        if (placementSlotRoot == null)
+        {
+            DebugTool.Warnning("placementSlotRoot가 비어 있습니다.", DebugType.Board, this);
+            return false;
+        }
+
+        PlacementSlot[] slots = placementSlotRoot.GetComponentsInChildren<PlacementSlot>(true);
+
+        foreach (PlacementSlot slot in slots)
+        {
+            if (slot == null)
+                continue;
+
+            if (!slotMap.TryGetValue(slot, out SlotData slotData))
+                continue;
+
+            if (!slotData.isOccupied)
+            {
+                emptySlot = slotData;
+                return true;
+            }
+        }
+
+        return false;
+    }
 }

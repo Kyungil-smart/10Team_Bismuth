@@ -9,9 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50563ed65c0958a4da0b738074577484, type: 3}
-  m_Name: Player Data
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerSO
-  level: 1
-  gold: 0
-  maxBaseHealth: 0
+  m_Script: {fileID: 11500000, guid: 75b17c9fe5b77f94db3c53e015adef34, type: 3}
+  m_Name: SynergySO
+  m_EditorClassIdentifier: Assembly-CSharp::SynergySO
+  _rows: []
