@@ -93,7 +93,7 @@ public class SummonManager : MonoBehaviour
     // 시너지 객채 생성 매서드
     private GameObject LoadUnitPrefab(UnitData data)
     {
-        return (GameObject)AssetDatabase.LoadAssetAtPath($"Assets/Prefabs/박승훈/Units/{data.UnitName}.prefab", typeof(GameObject));
+        return (GameObject)AssetDatabase.LoadAssetAtPath($"Assets/Resources/Units/{data.Id}.prefab", typeof(GameObject));
     }
 
     // 새로 생성될 유닛의 세팅 매핑
