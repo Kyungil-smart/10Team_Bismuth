@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using Random = UnityEngine.Random;
 
 public class SummonUnit : MonoBehaviour
@@ -16,6 +17,7 @@ public class SummonUnit : MonoBehaviour
     public class SummonedTowerRecord
     {
         public int summonIndex;
+        public int Id;
         public string unitName;
         public int tier;
         public UnitData unitData;
@@ -44,14 +46,13 @@ public class SummonUnit : MonoBehaviour
     [SerializeField] private SummonChanceSO summonSO;
 
     [Header("Prefab Table")]
-    [SerializeField] private List<UnitPrefabEntry> unitPrefabTable = new List<UnitPrefabEntry>();
+    [SerializeField] private List<GameObject> unitPrefabTable = new List<GameObject>();
 
     [Header("Owned Towers")]
     [SerializeField] private List<SummonedTowerRecord> ownedTowers = new List<SummonedTowerRecord>();
 
     [SerializeField] private bool summonLog = true;
-
-    private readonly Dictionary<string, GameObject> unitPrefabMap = new Dictionary<string, GameObject>();
+    
     private int summonSequence = 0;
 
     public IReadOnlyList<SummonedTowerRecord> OwnedTowers => ownedTowers;
@@ -67,7 +68,8 @@ public class SummonUnit : MonoBehaviour
         if (playerDataManager == null)
             playerDataManager = GetComponent<PlayerDataManager>();
 
-        BuildPrefabMap();
+        
+        // BuildPrefabMap();
     }
 
     private void Start()
@@ -110,6 +112,7 @@ public class SummonUnit : MonoBehaviour
         }
 
         GameObject prefab = GetUnitPrefab(data);
+        
         if (prefab == null)
         {
             DebugTool.Warnning(
@@ -131,6 +134,8 @@ public class SummonUnit : MonoBehaviour
         UnitStat stat = ApplyUnitStat(createdTower.gameObject, data);
 
         synergyManager?.OnUnitCreated?.Invoke(stat);
+        
+        PrintStat(stat);
 
         RegisterOwnedTower(data, createdTower, stat);
 
@@ -256,54 +261,42 @@ public class SummonUnit : MonoBehaviour
     private GameObject GetUnitPrefab(UnitData data)
     {
         if (data == null)
+        {
+            DebugTool.Log("데이터 널", DebugType.Data, this);
             return null;
+        }
 
-        if (unitPrefabMap.Count == 0)
-            BuildPrefabMap();
+        if (unitPrefabTable.Count == 0)
+        {
+            DebugTool.Warnning("프리팹 등록 필요", DebugType.Unit, this);
+            return null;
+        }
+        
+        // unitPrefabMap.TryGetValue(data.Id, out GameObject prefab);
+        GameObject prefab = unitPrefabTable[data.Id - 10001];
 
-        unitPrefabMap.TryGetValue(data.UnitName, out GameObject prefab);
         return prefab;
     }
 
-    private void BuildPrefabMap()
+    private void PrepareSpawnedTower(TowerUnit unit, UnitData data)
     {
-        unitPrefabMap.Clear();
-
-        foreach (UnitPrefabEntry entry in unitPrefabTable)
-        {
-            if (entry == null || entry.prefab == null)
-                continue;
-
-            string key = string.IsNullOrWhiteSpace(entry.unitName)
-                ? entry.prefab.name
-                : entry.unitName;
-
-            if (unitPrefabMap.ContainsKey(key))
-            {
-                DebugTool.Warnning($"중복 유닛 프리팹 키가 있습니다. key={key}", DebugType.Data, this);
-                continue;
-            }
-
-            unitPrefabMap.Add(key, entry.prefab);
-        }
-    }
-
-    private void PrepareSpawnedTower(TowerUnit towerUnit, UnitData data)
-    {
-        if (towerUnit == null)
+        if (unit == null)
             return;
 
-        towerUnit.gameObject.name = data.UnitName;
+        unit.gameObject.name = data.Id.ToString();
 
-        if (towerUnit.GetComponent<TowerLongPressDragHandler>() == null)
-            towerUnit.gameObject.AddComponent<TowerLongPressDragHandler>();
+        if (unit.GetComponent<TowerLongPressDragHandler>() == null)
+            unit.gameObject.AddComponent<TowerLongPressDragHandler>();
     }
 
     private UnitStat ApplyUnitStat(GameObject unitObject, UnitData unitData)
     {
         UnitStat stat = unitObject.GetComponent<UnitStat>();
         if (stat == null)
+        {
+            DebugTool.Log("유닛 찾을 수 없음", DebugType.Unit, this);
             stat = unitObject.AddComponent<UnitStat>();
+        }
 
         stat.Id = unitData.Id;
         stat.Tier = unitData.Tier;
@@ -316,7 +309,7 @@ public class SummonUnit : MonoBehaviour
         stat.attackTypes = unitData.AttackType;
         stat.AttackTargetCount = unitData.AttackTargetCount;
         stat.SynergIDs = unitData.SynergyIDs;
-
+        DebugTool.Log("스탯 맵핑 완료", DebugType.Data, this);
         return stat;
     }
 
@@ -327,6 +320,7 @@ public class SummonUnit : MonoBehaviour
         ownedTowers.Add(new SummonedTowerRecord
         {
             summonIndex = ++summonSequence,
+            Id = stat.Id,
             unitName = data.UnitName,
             tier = data.Tier,
             unitData = data,
@@ -338,5 +332,28 @@ public class SummonUnit : MonoBehaviour
     private void CleanupNullOwnedTowers()
     {
         ownedTowers.RemoveAll(record => record == null || record.towerUnit == null);
+    }
+    private void PrintStat(UnitStat stat)
+    {
+        if (stat == null)
+        {
+            DebugTool.Warnning("스탯이 없습니다.", DebugType.Summon, this);
+            return;
+        }
+
+        DebugTool.Log($"ID : {stat.Id}\n" +
+                      $"Tier : {stat.Tier}\n" +
+                      $"Name : {stat.Name}\n" +
+                      $"AttackPower : {stat.AttackPower}\n" +
+                      $"AttackSpeed : {stat.AttackSpeed}\n" +
+                      $"CritChance : {stat.CritChance}\n" +
+                      $"Range : {stat.Range}\n" +
+                      $"AttackArea : {stat.AttackArea}\n" +
+                      $"AttackType : {stat.attackTypes}\n" +
+                      $"AttackTargetCount : {stat.AttackTargetCount}\n" +
+                      $"Synerge1 : {stat.SynergIDs[0]}\n" +
+                      $"Synerge2 : {stat.SynergIDs[1]}\n" +
+                      $"Synerge3 : {stat.SynergIDs[2]}\n"
+            , DebugType.Summon, this);
     }
 }
