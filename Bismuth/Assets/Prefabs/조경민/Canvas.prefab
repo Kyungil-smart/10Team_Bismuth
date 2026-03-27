@@ -10432,6 +10432,7 @@ GameObject:
   - component: {fileID: 9048149512352786198}
   - component: {fileID: 3512092419855033562}
   - component: {fileID: 6470102584543080957}
+  - component: {fileID: 176231224102234381}
   m_Layer: 5
   m_Name: LanguagePanel
   m_TagString: Untagged
@@ -10497,6 +10498,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &176231224102234381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5991655110331039751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2c69701c8f5ff444979410dd68fc443, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LanguagePanelUI
+  _languageText: {fileID: 6257805957692273884}
+  _languageDropdown: {fileID: 6449348920161894084}
 --- !u!1 &6069439436186272067
 GameObject:
   m_ObjectHideFlags: 0
