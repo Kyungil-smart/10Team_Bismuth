@@ -5693,7 +5693,7 @@ GameObject:
   - component: {fileID: 1150678450702701216}
   - component: {fileID: 9217919348557542849}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: CombatCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
