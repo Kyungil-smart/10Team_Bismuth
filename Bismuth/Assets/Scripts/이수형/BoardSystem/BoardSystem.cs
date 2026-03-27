@@ -309,6 +309,7 @@ public class BoardSystem : MonoBehaviour
         }
 
         PlacementSlot[] slots = placementSlotRoot.GetComponentsInChildren<PlacementSlot>(true);
+        List<SlotData> emptySlots = new List<SlotData>();
 
         foreach (PlacementSlot slot in slots)
         {
@@ -320,11 +321,15 @@ public class BoardSystem : MonoBehaviour
 
             if (!slotData.isOccupied)
             {
-                emptySlot = slotData;
-                return true;
+                emptySlots.Add(slotData);
+                continue;
+                
             }
         }
+        int randomIndex = Random.Range(0, emptySlots.Count);
 
-        return false;
+        emptySlot = emptySlots[randomIndex];
+
+        return true;
     }
 }

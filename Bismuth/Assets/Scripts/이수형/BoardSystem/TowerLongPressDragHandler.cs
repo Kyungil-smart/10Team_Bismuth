@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine.EventSystems;
+
 
 [DisallowMultipleComponent]
 [RequireComponent(typeof(TowerUnit))]
@@ -21,6 +21,12 @@ public class TowerLongPressDragHandler : MonoBehaviour
     private Vector2 pressedScreenPos;
     private Vector3 dragOffset;
 
+    public void Initialize(BoardSystem board, Camera cam, CellHighlight highlight)
+    {
+        boardSystem = board;
+        worldCamera = cam;
+        cellHighlight = highlight;
+    }
     private void Awake()
     {
         towerUnit = GetComponent<TowerUnit>();
@@ -64,22 +70,40 @@ public class TowerLongPressDragHandler : MonoBehaviour
 
         UpdateDrag();
     }
-
-    private void OnMouseDown()
+    public bool BeginPress(Vector2 screenPos)
     {
-        if (towerUnit == null || towerUnit.CurrentSlot == null)
-            return;
+        if (isActiveAndEnabled == false)
+            return false;
+        if (towerUnit == null || towerUnit.CurrentSlot == null) 
+            return false;
 
-        if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject())
-            return;
+
+        
 
         isPressed = true;
         isDragging = false;
         pressedTime = Time.time;
-        pressedScreenPos = Input.mousePosition;
+        pressedScreenPos = screenPos;
 
         DebugTool.Log("타워 홀드 시작", DebugType.Unit, this);
+        return true;
     }
+    //private void OnMouseDown()
+    //{
+    //    DebugTool.Log("타워 홀드 마우스인식", DebugType.Unit, this);
+    //    if (towerUnit == null || towerUnit.CurrentSlot == null)
+    //        return;
+
+    //    if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject())
+    //        return;
+
+    //    isPressed = true;
+    //    isDragging = false;
+    //    pressedTime = Time.time;
+    //    pressedScreenPos = Input.mousePosition;
+
+    //    DebugTool.Log("타워 홀드 시작", DebugType.Unit, this);
+    //}
 
     private void BeginDrag()
     {
@@ -233,4 +257,6 @@ public class TowerLongPressDragHandler : MonoBehaviour
 
         ResetState();
     }
+
+    
 }
