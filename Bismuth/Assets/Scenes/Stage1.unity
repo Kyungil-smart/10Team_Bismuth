@@ -466,7 +466,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 17, y: 180}
+  m_AnchoredPosition: {x: 17, y: -93}
   m_SizeDelta: {x: -684, y: -470}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &345466169
@@ -607,12 +607,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 929a404028b8aa746a8dba302fe9a46d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TowerMoveController
-  boardSystem: {fileID: 95619001}
-  worldCamera: {fileID: 0}
-  cellHighlight: {fileID: 702953181}
-  <SelectedTower>k__BackingField: {fileID: 0}
-  <MovingTower>k__BackingField: {fileID: 0}
-  <IsMoveMode>k__BackingField: 0
 --- !u!1001 &404343938
 PrefabInstance:
   m_ObjectHideFlags: 0
