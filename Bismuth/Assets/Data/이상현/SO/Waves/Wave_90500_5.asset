@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 571c83dcca643fc46bc417f57477dd83, type: 3}
+  m_Name: Wave_90500_5
+  m_EditorClassIdentifier: Assembly-CSharp::WaveDataSO
+  _waveNumber: 5
+  _difficultyModifierId: 90500
+  _clearReward: 50
+  _spawnEntries:
+  - _monsterData: {fileID: 11400000, guid: 0d01032f076cc104cb3b4ba3874a6b71, type: 2}
+    _count: 10
+    _spawnInterval: 1
+    _startDelay: 1.1
+  - _monsterData: {fileID: 11400000, guid: 7732fbf00cfee6140982096463af185e, type: 2}
+    _count: 10
+    _spawnInterval: 1
+    _startDelay: 2
