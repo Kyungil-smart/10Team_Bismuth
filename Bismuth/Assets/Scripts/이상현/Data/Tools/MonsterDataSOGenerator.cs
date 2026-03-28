@@ -90,7 +90,6 @@ public class MonsterDataSOGenerator : MonoBehaviour
         values.BaseDefense = row.BaseDefense;
         values.DefenseGrowth = row.DefenseGrowth;
         values.MoveSpeed = row.MoveSpeed;
-        values.WaitTime = row.WaitTime;
         values.MoveType = ConvertMoveType(row.MoveType);
         values.BaseDamageToBase = row.BaseDamageToBase;
         values.KillReward = row.KillReward;
