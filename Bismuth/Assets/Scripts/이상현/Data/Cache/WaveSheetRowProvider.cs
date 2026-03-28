@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public class WaveSheetRowProvider : MonoBehaviour
 {
     [Header("===구글 시트 로더===")] 
@@ -16,7 +15,7 @@ public class WaveSheetRowProvider : MonoBehaviour
     [SerializeField] private int _loadedCount;
     
     private readonly List<WaveSheetRow> _rows = new();
-    private readonly Dictionary<int, List<WaveSheetRow>> _rowsByWaveNumber = new();
+    private readonly Dictionary<string, List<WaveSheetRow>> _rowsByModifierAndWave = new();
     
     private WaveSheetParser _waveSheetParser;
     
@@ -41,8 +40,8 @@ public class WaveSheetRowProvider : MonoBehaviour
         
         StartCoroutine(_waveSheetLoader.Load(OnWaveSheetLoaded));
     }
-
-    public bool TryGetRowsByWaveNumber(int waveNumber, out IReadOnlyList<WaveSheetRow> rows)
+    
+    public bool TryGetRows(int difficultyModifierId, int waveNumber, out IReadOnlyList<WaveSheetRow> rows)
     {
         rows = null;
 
@@ -51,7 +50,9 @@ public class WaveSheetRowProvider : MonoBehaviour
             return false;
         }
 
-        if (!_rowsByWaveNumber.TryGetValue(waveNumber, out List<WaveSheetRow> waveRows))
+        string waveKey = BuildWaveKey(difficultyModifierId, waveNumber);
+        
+        if (!_rowsByModifierAndWave.TryGetValue(waveKey, out List<WaveSheetRow> waveRows))
         {
             return false;
         }
@@ -94,26 +95,43 @@ public class WaveSheetRowProvider : MonoBehaviour
         _loadedCount = _rows.Count;
     }
     
+    // 보정 계수 ID와 웨이브 번호를 묶어서 조회용 키
+    private string BuildWaveKey(int difficultyModifierId, int waveNumber)
+    {
+        return $"{difficultyModifierId}_{waveNumber}";
+    }
+    
+    /// <summary>
+    /// 보정 계수 ID + 웨이브 번호 기준으로 생성
+    /// 같은 웨이브 안에서 엔트리 순서 기준으로 정렬
+    /// </summary>
     private void RebuildLookup()
     {
-        _rowsByWaveNumber.Clear();
+        _rowsByModifierAndWave.Clear();
 
         foreach (WaveSheetRow row in _rows)
         {
-            if (!_rowsByWaveNumber.TryGetValue(row.WaveNumber, out List<WaveSheetRow> waveRows))
+            string waveKey = BuildWaveKey(row.DifficultyModifierId, row.WaveNumber);
+            
+            if (!_rowsByModifierAndWave.TryGetValue(waveKey, out List<WaveSheetRow> waveRows))
             {
                 waveRows = new List<WaveSheetRow>();
-                _rowsByWaveNumber.Add(row.WaveNumber, waveRows);
+                _rowsByModifierAndWave.Add(waveKey, waveRows);
             }
 
             waveRows.Add(row);
+        }
+        
+        foreach (List<WaveSheetRow> waveRows in _rowsByModifierAndWave.Values)
+        {
+            waveRows.Sort((a, b) => a.EntryOrder.CompareTo(b.EntryOrder));
         }
     }
 
     private void ClearLoadedData()
     {
         _rows.Clear();
-        _rowsByWaveNumber.Clear();
+        _rowsByModifierAndWave.Clear();
         
         _isLoaded = false;
         _loadedCount = 0;

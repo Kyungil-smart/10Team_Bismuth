@@ -7,25 +7,21 @@ using System.Globalization;
 /// 
 /// CSV 텍스트를 줄 단위로 분리
 /// 헤더 이름 기준으로 각 행을 WaveSheetRow로 변환
-/// 필수 컬럼 누락 시 전체 파싱을 중단하고, 선택 컬럼은 기본값으로 대체
+/// 컬럼 누락 또는 값 변환 실패 시 전체 파싱을 중단
 /// </summary>
 public class WaveSheetParser
 {
-    private const string HEADER_WAVE_ENTRY_ID = "웨이브 ID";
-    private const string HEADER_WAVE_NUMBER = "웨이브수";
-    private const string HEADER_MONSTER_ID = "출현 몬스터(ID값)";
+    // 1.웨이브 번호 2.엔트리 순서 3.출현 몬스터 ID 4.수량	5.소환 간격(초)
+    // 6.난이도 보정 ID 7.시작 지연(초) 8.웨이브 클리어 보상
+    private const string HEADER_WAVE_NUMBER = "웨이브 번호";
+    private const string HEADER_ENTRY_ORDER = "엔트리 순서";
+    private const string HEADER_MONSTER_ID = "출현 몬스터 ID";
     private const string HEADER_COUNT = "수량";
-    private const string HEADER_SPAWN_INTERVAL = "소환간격(초)";
-    private const string HEADER_START_DELAY = "시작 지연";
-
-    private enum OptionalCellState
-    {
-        Success,
-        HeaderMissing,
-        CellMissing,
-        InvalidContext
-    }
-
+    private const string HEADER_SPAWN_INTERVAL = "소환 간격(초)";
+    private const string HEADER_DIFFICULTY_MODIFIER_ID = "난이도 보정 ID";
+    private const string HEADER_START_DELAY = "시작 지연(초)";
+    private const string HEADER_CLEAR_REWARD = "웨이브 클리어 보상";
+    
     public bool TryParse(string csvText, out List<WaveSheetRow> rows)
     {
         rows = new List<WaveSheetRow>();
@@ -82,10 +78,10 @@ public class WaveSheetParser
         row = null;
 
         // 필수 컬럼
-        if (!CsvValueParser.TryReadInt(cells, headerMap, HEADER_WAVE_ENTRY_ID, out int waveEntryId))
+        if (!CsvValueParser.TryReadInt(cells, headerMap, HEADER_WAVE_NUMBER, out int waveNumber))
             return false;
 
-        if (!CsvValueParser.TryReadInt(cells, headerMap, HEADER_WAVE_NUMBER, out int waveNumber))
+        if (!CsvValueParser.TryReadInt(cells, headerMap, HEADER_ENTRY_ORDER, out int entryOrder))
             return false;
 
         if (!CsvValueParser.TryReadInt(cells, headerMap, HEADER_MONSTER_ID, out int monsterId))
@@ -96,100 +92,31 @@ public class WaveSheetParser
 
         if (!CsvValueParser.TryReadFloat(cells, headerMap, HEADER_SPAWN_INTERVAL, out float spawnInterval))
             return false;
+
+        if (!CsvValueParser.TryReadInt(cells, headerMap, HEADER_DIFFICULTY_MODIFIER_ID, out int difficultyModifierId))
+            return false;
         
-        // 선택 컬럼
-        if (!TryReadOptionalFloat(cells, headerMap, HEADER_START_DELAY, 0f, csvLineNumber, out float startDelay))
+        if (!CsvValueParser.TryReadInt(cells, headerMap, HEADER_CLEAR_REWARD, out int clearReward))
+            return false;
+        
+        if (!CsvValueParser.TryReadFloat(cells, headerMap, HEADER_START_DELAY, out float startDelay))
             return false;
         
         row = new WaveSheetRow
         {
-            WaveEntryId = waveEntryId,
+            // 기존 코드와의 점진적 호환용 임시 값
+            WaveEntryId = csvLineNumber,
+
             WaveNumber = waveNumber,
+            EntryOrder = entryOrder,
             MonsterId = monsterId,
             Count = count,
             SpawnInterval = spawnInterval,
-            StartDelay = startDelay
+            DifficultyModifierId = difficultyModifierId,
+            StartDelay = startDelay,
+            ClearReward = clearReward
         };
         
         return true;
-    }
-
-    private bool TryReadOptionalFloat(
-        string[] cells,
-        Dictionary<string, int> headerMap,
-        string headerName,
-        float defaultValue,
-        int csvLineNumber,
-        out float value)
-    {
-        value = defaultValue;
-
-        OptionalCellState state = TryGetOptionalCell(cells, headerMap, headerName, out string cellValue);
-
-        if (state == OptionalCellState.HeaderMissing || state == OptionalCellState.CellMissing)
-        {
-            value = defaultValue;
-            return true;
-        }
-
-        if (state == OptionalCellState.InvalidContext)
-        {
-            return false;
-        }
-
-        if (string.IsNullOrWhiteSpace(cellValue))
-        {
-            value = defaultValue;
-            return true;
-        }
-
-        if (!float.TryParse(
-                cellValue.Trim(),
-                NumberStyles.Float,
-                CultureInfo.InvariantCulture,
-                out value))
-        {
-            DebugTool.Error(
-                $"[WaveSheetParser] 선택 실수 컬럼 변환 실패 - " +
-                $"라인: {csvLineNumber}, 헤더: {headerName}, 값: {cellValue}",
-                DebugType.Data);
-            return false;
-        }
-
-        return true;
-    }
-
-    private OptionalCellState TryGetOptionalCell(
-        string[] cells,
-        Dictionary<string, int> headerMap,
-        string headerName,
-        out string cellValue)
-    {
-        cellValue = string.Empty;
-
-        if (cells == null)
-        {
-            DebugTool.Error("[WaveSheetParser] cells 배열이 null입니다.", DebugType.Data);
-            return OptionalCellState.InvalidContext;
-        }
-
-        if (headerMap == null)
-        {
-            DebugTool.Error("[WaveSheetParser] headerMap이 null입니다.", DebugType.Data);
-            return OptionalCellState.InvalidContext;
-        }
-
-        if (!headerMap.TryGetValue(headerName, out int columnIndex))
-        {
-            return OptionalCellState.HeaderMissing;
-        }
-
-        if (columnIndex < 0 || columnIndex >= cells.Length)
-        {
-            return OptionalCellState.CellMissing;
-        }
-
-        cellValue = cells[columnIndex];
-        return OptionalCellState.Success;
     }
 }
