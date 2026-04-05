@@ -16,10 +16,14 @@ EditorBuildSettings:
     guid: ecad5d348affeb945a42cf68a9f7f0df
   - enabled: 1
     path: Assets/Scenes/Forest/02_Forest-normal.unity
+<<<<<<< Updated upstream
     guid: 5859af4dbf25fe347897b9e3ef083bf4
+=======
+    guid: fd751b3b9c093ec4b8a8cf6aa9f04589
+>>>>>>> Stashed changes
   - enabled: 1
     path: Assets/Scenes/Forest/03_Forest-hard.unity
-    guid: 4027300db2bab8b4a98711a5b24b6d37
+    guid: ec27f35eafcbf244ea20ec2489187ef8
   - enabled: 1
     path: Assets/Scenes/FortTown/04_FortTown-easy.unity
     guid: 7d571db7fc537ec42bf1aec01e7b267d

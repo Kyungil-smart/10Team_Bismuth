@@ -44,4 +44,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6423e86b59416e64287cbf8ecbf37586, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SoundManager
-  sfxVolume: 1
+  sfxVolume: 0.15
